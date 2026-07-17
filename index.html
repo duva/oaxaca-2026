@@ -534,6 +534,49 @@ footer {
   letter-spacing: 0.12em; text-transform: uppercase;
 }
 
+/* ─── PHOTO STRIP ───────────────────────────── */
+.photo-strip {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 0.9rem;
+  padding-bottom: 2px;
+}
+.strip-card {
+  flex-shrink: 0;
+  width: 92px;
+  height: 64px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.strip-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.strip-card:active img { transform: scale(1.04); }
+.strip-card-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  font-size: 0.42rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.90);
+  padding: 10px 5px 4px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+.bday .strip-card { border-color: rgba(245,200,66,0.15); }
+
 /* ─── RESPONSIVE ─────────────────────────────── */
 @media (min-width: 480px) {
   .cover-title { font-size: 5rem; }
@@ -575,7 +618,7 @@ footer {
 
     <!-- ████ SLIDE 0 · COVER ████ -->
     <div class="story cover active" id="s0">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/2114014/pexels-photo-2114014.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center top"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 68%"></div>
       <div class="cover-content">
         <p class="cover-eyebrow">Squad Road Trip · Julio 2026</p>
         <h1 class="cover-title">Oaxaca<br>'26</h1>
@@ -594,7 +637,7 @@ footer {
 
     <!-- ████ SLIDE 1 · DÍA 1 · CDMX → OAXACA ████ -->
     <div class="story" id="s1">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 40%"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/37908041/pexels-photo-37908041.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 45%"></div>
       <div class="story-panel">
         <!-- MINI-MAP D1 -->
         <div class="mini-map">
@@ -616,6 +659,25 @@ footer {
                 path="M28,40 C60,38 88,32 118,34 C152,37 188,39 252,35"/>
             </circle>
           </svg>
+        </div>
+        <!-- FOTO STRIP D1 -->
+        <div class="photo-strip">
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/7464537/pexels-photo-7464537.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Road trip</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/13630887/pexels-photo-13630887.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Centro histórico</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/33715073/pexels-photo-33715073.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Tradición viva</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/17246836/pexels-photo-17246836.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Vista aérea</div>
+          </div>
         </div>
         <div class="day-tag">Día 1 · Martes 21 Julio</div>
         <h2 class="day-title">El squad llega 🌵</h2>
@@ -685,7 +747,7 @@ footer {
 
     <!-- ████ SLIDE 2 · DÍA 2 · HIERVE EL AGUA → ZIPOLITE ████ -->
     <div class="story" id="s2">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/10615053/pexels-photo-10615053.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 55%"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/33601908/pexels-photo-33601908.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 50%"></div>
       <div class="story-panel">
         <!-- MINI-MAP D2 -->
         <div class="mini-map">
@@ -709,6 +771,25 @@ footer {
                 path="M22,54 C45,50 58,34 86,28 C110,22 132,20 155,22 C176,25 196,46 252,60"/>
             </circle>
           </svg>
+        </div>
+        <!-- FOTO STRIP D2 -->
+        <div class="photo-strip">
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/33773803/pexels-photo-33773803.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Hierve el Agua</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/20994696/pexels-photo-20994696.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Cascada petrificada</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/19174994/pexels-photo-19174994.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">San José del Pacífico</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Llegamos a Zipolite</div>
+          </div>
         </div>
         <div class="day-tag">Día 2 · Miércoles 22 Julio</div>
         <h2 class="day-title">Sierra, pozas y playa 🌊</h2>
@@ -794,7 +875,7 @@ footer {
 
     <!-- ████ SLIDE 3 · DÍA 3 · LA VENTANILLA + MAZUNTE + PUNTA COMETA ████ -->
     <div class="story" id="s3">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/13070860/pexels-photo-13070860.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 60%"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/29860697/pexels-photo-29860697.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 40%"></div>
       <div class="story-panel">
         <!-- MINI-MAP D3 -->
         <div class="mini-map">
@@ -818,6 +899,25 @@ footer {
                 path="M22,46 C52,42 72,38 102,40 C132,42 158,38 186,42 C210,46 232,48 258,44"/>
             </circle>
           </svg>
+        </div>
+        <!-- FOTO STRIP D3 -->
+        <div class="photo-strip">
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/12285254/pexels-photo-12285254.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Cocodrilo</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/29860697/pexels-photo-29860697.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">La Ventanilla</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/10615053/pexels-photo-10615053.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Costa oaxaqueña</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Punta Cometa</div>
+          </div>
         </div>
         <div class="day-tag">Día 3 · Jueves 23 Julio</div>
         <h2 class="day-title">Costa total 🐊🌅</h2>
@@ -888,7 +988,7 @@ footer {
 
     <!-- ████ SLIDE 4 · DÍA 4 · LISS BDAY 🎂 ████ -->
     <div class="story bday" id="s4">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/12084946/pexels-photo-12084946.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/12084946/pexels-photo-12084946.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 35%"></div>
       <div class="story-panel">
         <!-- MINI-MAP D4 -->
         <div class="mini-map">
@@ -910,6 +1010,25 @@ footer {
                 path="M30,40 C60,34 100,30 140,32 C165,34 188,36 214,34 C234,32 252,30 260,38"/>
             </circle>
           </svg>
+        </div>
+        <!-- FOTO STRIP D4 -->
+        <div class="photo-strip">
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/16194659/pexels-photo-16194659.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Delfines 🐬</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/3354346/pexels-photo-3354346.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Pacífico</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/12084946/pexels-photo-12084946.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Tortugas 🐢</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Cumple en playa 🎂</div>
+          </div>
         </div>
         <div class="day-tag">Día 4 · Viernes 24 Julio · ¡Cumpleaños!</div>
         <h2 class="day-title">Feliz cumple, Liss 👑🎂</h2>
@@ -977,7 +1096,7 @@ footer {
 
     <!-- ████ SLIDE 5 · DÍA 5 · ZIPOLITE → OAXACA ████ -->
     <div class="story" id="s5">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 70%"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 62%"></div>
       <div class="story-panel">
         <!-- MINI-MAP D5 -->
         <div class="mini-map">
@@ -997,6 +1116,25 @@ footer {
                 path="M22,58 C50,54 72,48 102,40 C132,32 155,28 180,26 C205,24 232,30 258,34"/>
             </circle>
           </svg>
+        </div>
+        <!-- FOTO STRIP D5 -->
+        <div class="photo-strip">
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Último amanecer</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/19174994/pexels-photo-19174994.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Carretera sierra</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/37908041/pexels-photo-37908041.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">De vuelta a Oaxaca</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/33715073/pexels-photo-33715073.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Noche de mezcal</div>
+          </div>
         </div>
         <div class="day-tag">Día 5 · Sábado 25 Julio</div>
         <h2 class="day-title">De playa a mezcal 🥃</h2>
@@ -1092,6 +1230,25 @@ footer {
                 path="M22,52 C45,46 58,36 82,32 C115,28 162,30 215,28 C240,27 260,27 272,24"/>
             </circle>
           </svg>
+        </div>
+        <!-- FOTO STRIP D6 -->
+        <div class="photo-strip">
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/17002196/pexels-photo-17002196.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Monte Albán</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/34032029/pexels-photo-34032029.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Puebla</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/19683967/pexels-photo-19683967.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Calles coloniales</div>
+          </div>
+          <div class="strip-card">
+            <img src="https://images.pexels.com/photos/30338264/pexels-photo-30338264.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
+            <div class="strip-card-label">Regreso a CDMX</div>
+          </div>
         </div>
         <div class="day-tag">Día 6 · Domingo 26 Julio</div>
         <h2 class="day-title">El cierre épico 🏛️🏁</h2>
