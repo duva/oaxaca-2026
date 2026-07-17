@@ -262,6 +262,63 @@ img{display:block;max-width:100%}
   color:#F5C842;
 }
 
+/* ── DAILY BRIEF CARD ──────────────────────────────── */
+.day-brief{
+  margin-top:1.2rem;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.11);
+  border-radius:14px;
+  padding:1rem 1.1rem;
+  display:flex;flex-direction:column;
+  gap:0.7rem;
+}
+.brief-row{
+  display:flex;
+  gap:0.65rem;
+  align-items:flex-start;
+}
+.brief-icon{
+  font-size:0.95rem;
+  width:20px;flex-shrink:0;
+  line-height:1.4;
+}
+.brief-content{flex:1;}
+.brief-label{
+  font-size:0.52rem;font-weight:600;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.32);
+  margin-bottom:3px;
+}
+.brief-text{
+  font-size:0.76rem;
+  color:rgba(255,255,255,0.68);
+  line-height:1.55;
+}
+.brief-temps{
+  display:flex;flex-wrap:wrap;gap:4px;
+  margin-top:4px;
+}
+.bt{
+  font-size:0.63rem;font-weight:600;
+  padding:2px 8px;border-radius:20px;
+}
+.bt-hot{background:rgba(255,100,50,0.14);color:#ff9060;}
+.bt-warm{background:rgba(255,200,50,0.12);color:#f5c842;}
+.bt-cool{background:rgba(100,180,255,0.12);color:#80c8ff;}
+.bt-cold{background:rgba(150,200,255,0.12);color:#a0d0ff;}
+.brief-divider{
+  height:1px;
+  background:rgba(255,255,255,0.07);
+  margin:0;
+}
+/* Birthday brief — gold tint */
+.day.bday .day-brief{
+  background:rgba(245,200,66,0.06);
+  border-color:rgba(245,200,66,0.18);
+}
+.day.bday .brief-label{color:rgba(245,200,66,0.35);}
+.day.bday .brief-text{color:rgba(255,255,255,0.72);}
+
 /* ── BIRTHDAY TREATMENT ────────────────────────────── */
 .day.bday .day-title{color:#F5C842;}
 .day.bday .tl-dot{background:#F5C842;}
@@ -429,7 +486,7 @@ img{display:block;max-width:100%}
     <div class="hero-pills">
       <span class="hero-pill">6 días</span>
       <span class="hero-pill">Sierra &middot; Costa &middot; Historia</span>
-      <span class="hero-pill">2 casas en la playa</span>
+      <span class="hero-pill">1 casa en Zipolite</span>
       <span class="hero-pill special">&#127874; Cumpleaños Liss</span>
     </div>
   </div>
@@ -441,7 +498,7 @@ img{display:block;max-width:100%}
 <!-- ── DÍA 1 ─────────────────────────────────────────── -->
 <section class="day reveal" id="dia1" aria-label="Día 1">
   <div class="day-bg"
-    style="background-image:url('https://images.pexels.com/photos/33773622/pexels-photo-33773622.jpeg?auto=compress&cs=tinysrgb&w=1280')"
+    style="background-image:url('https://images.pexels.com/photos/17246836/pexels-photo-17246836.jpeg?auto=compress&cs=tinysrgb&w=1280')"
     aria-hidden="true"></div>
   <div class="day-grad" aria-hidden="true"></div>
   <div class="day-inner">
@@ -490,6 +547,37 @@ img{display:block;max-width:100%}
       <span class="chip">Mercado 20 de Nov.</span>
       <span class="chip">Mezcal de bienvenida</span>
     </div>
+    <div class="day-brief">
+      <div class="brief-row">
+        <span class="brief-icon">🌡</span>
+        <div class="brief-content">
+          <p class="brief-label">Clima del día</p>
+          <div class="brief-temps">
+            <span class="bt bt-warm">Mañana 22°C</span>
+            <span class="bt bt-warm">Tarde 27°C</span>
+            <span class="bt bt-cool">Noche 20°C</span>
+            <span class="bt bt-cool">🌧 Lluvia 65%</span>
+          </div>
+          <p class="brief-text" style="margin-top:4px">Típico julio en Oaxaca — soleado en la mañana, lluvias vespertinas. Sin drama.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">👕</span>
+        <div class="brief-content">
+          <p class="brief-label">Qué llevar puesto</p>
+          <p class="brief-text">Ropa cómoda para viaje — playera, mezclilla o jogger, tenis. Capas para la noche. Algo presentable para salir al centro.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">✨</span>
+        <div class="brief-content">
+          <p class="brief-label">Actitud del día</p>
+          <p class="brief-text">Modo llegada — sin apuros. Dejar que Oaxaca te envuelva. El primer mezcal vale doble.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -498,7 +586,7 @@ img{display:block;max-width:100%}
 <!-- ── DÍA 2 ─────────────────────────────────────────── -->
 <section class="day reveal" id="dia2" aria-label="Día 2">
   <div class="day-bg"
-    style="background-image:url('https://images.pexels.com/photos/33773803/pexels-photo-33773803.jpeg?auto=compress&cs=tinysrgb&w=1280')"
+    style="background-image:url('https://images.pexels.com/photos/10615053/pexels-photo-10615053.jpeg?auto=compress&cs=tinysrgb&w=1280')"
     aria-hidden="true"></div>
   <div class="day-grad" aria-hidden="true"></div>
   <div class="day-inner">
@@ -546,6 +634,37 @@ img{display:block;max-width:100%}
       <span class="chip">Cascada petrificada</span>
       <span class="chip">Cloud forest SJdP</span>
       <span class="chip">Primera noche en la costa</span>
+    </div>
+    <div class="day-brief">
+      <div class="brief-row">
+        <span class="brief-icon">🌡</span>
+        <div class="brief-content">
+          <p class="brief-label">Clima del día</p>
+          <div class="brief-temps">
+            <span class="bt bt-warm">HeA mañana 20°C</span>
+            <span class="bt bt-cool">SJdP tarde 19°C</span>
+            <span class="bt bt-cold">SJdP noche 12°C ⚠️</span>
+            <span class="bt bt-hot">Costa llegada 27°C</span>
+          </div>
+          <p class="brief-text" style="margin-top:4px">Hierve el Agua: mañana clara ideal. SJdP a 2,548 m — frío real y niebla. Costa: caluroso al llegar de noche.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">🎽</span>
+        <div class="brief-content">
+          <p class="brief-label">Qué llevar puesto</p>
+          <p class="brief-text">⚠️ Sudadera o chamarra ligera OBLIGATORIA para SJdP. Traje de baño para las pozas. Tenis + sandalias. Capas que puedas quitar y poner.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">✨</span>
+        <div class="brief-content">
+          <p class="brief-label">Actitud del día</p>
+          <p class="brief-text">Madrugadores y agradecidos — las pozas de madrugada son otra cosa. SJdP es pausa mágica antes del calor. La costa te espera.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -609,6 +728,37 @@ img{display:block;max-width:100%}
       <span class="chip">Atardecer Punta Cometa</span>
       <span class="chip">Punto más al sur de México</span>
     </div>
+    <div class="day-brief">
+      <div class="brief-row">
+        <span class="brief-icon">🌡</span>
+        <div class="brief-content">
+          <p class="brief-label">Clima del día</p>
+          <div class="brief-temps">
+            <span class="bt bt-hot">Mañana 27°C</span>
+            <span class="bt bt-hot">Tarde 32°C</span>
+            <span class="bt bt-warm">Noche 26°C</span>
+            <span class="bt bt-cool">🌤 Lluvia 30%</span>
+          </div>
+          <p class="brief-text" style="margin-top:4px">Calor húmedo del Pacífico todo el día. Mayormente soleado. Posible lluvia breve de noche — no afecta el atardecer.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">🩱</span>
+        <div class="brief-content">
+          <p class="brief-label">Qué llevar puesto</p>
+          <p class="brief-text">Traje de baño, short, playera fresca. Bloqueador OBLIGATORIO. Sombrero o gorra. Sandalias todo el día.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">✨</span>
+        <div class="brief-content">
+          <p class="brief-label">Actitud del día</p>
+          <p class="brief-text">Modo slow traveler — La Ventanilla merece calma. Punta Cometa se graba en la memoria, no solo en el teléfono.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -617,7 +767,7 @@ img{display:block;max-width:100%}
 <!-- ── DÍA 4 — BIRTHDAY ──────────────────────────────── -->
 <section class="day bday reveal" id="dia4" aria-label="Día 4 — Cumpleaños Liss">
   <div class="day-bg"
-    style="background-image:url('https://images.pexels.com/photos/27500036/pexels-photo-27500036.jpeg?auto=compress&cs=tinysrgb&w=1280')"
+    style="background-image:url('https://images.pexels.com/photos/12084946/pexels-photo-12084946.jpeg?auto=compress&cs=tinysrgb&w=1280')"
     aria-hidden="true"></div>
   <div class="day-grad" aria-hidden="true"></div>
   <div class="day-inner">
@@ -666,6 +816,37 @@ img{display:block;max-width:100%}
       <span class="chip">Tortugas al Pacífico</span>
       <span class="chip">Fiesta en la playa</span>
     </div>
+    <div class="day-brief">
+      <div class="brief-row">
+        <span class="brief-icon">🌡</span>
+        <div class="brief-content">
+          <p class="brief-label">Clima del día</p>
+          <div class="brief-temps">
+            <span class="bt bt-hot">Mañana 27°C</span>
+            <span class="bt bt-hot">Tarde 31°C</span>
+            <span class="bt bt-warm">Noche 25°C</span>
+            <span class="bt bt-cool">🌊 Brisa del Pacífico</span>
+          </div>
+          <p class="brief-text" style="margin-top:4px">El mejor día climático del viaje — Zipolite siempre tiene brisa. Perfecto para playa + tortugas + festejo de noche.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">🩱</span>
+        <div class="brief-content">
+          <p class="brief-label">Qué llevar puesto</p>
+          <p class="brief-text">Traje de baño todo el día. Vestido o camisa ligera para la noche. Sandalias que aguanten el festejo. Bloqueador en la mañana.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">🎉</span>
+        <div class="brief-content">
+          <p class="brief-label">Actitud del día</p>
+          <p class="brief-text">El día del año. Playa sin reloj, tortugas al atardecer y cumpleaños de Liss de noche. Todo fluye, todos presentes.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -674,7 +855,7 @@ img{display:block;max-width:100%}
 <!-- ── DÍA 5 ─────────────────────────────────────────── -->
 <section class="day reveal" id="dia5" aria-label="Día 5">
   <div class="day-bg"
-    style="background-image:url('https://images.pexels.com/photos/33601908/pexels-photo-33601908.jpeg?auto=compress&cs=tinysrgb&w=1280')"
+    style="background-image:url('https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1280')"
     aria-hidden="true"></div>
   <div class="day-grad" aria-hidden="true"></div>
   <div class="day-inner">
@@ -716,6 +897,37 @@ img{display:block;max-width:100%}
       <span class="chip">Despedida del Pacífico</span>
       <span class="chip">Delfines (por confirmar)</span>
       <span class="chip">~5.5 hrs de regreso</span>
+    </div>
+    <div class="day-brief">
+      <div class="brief-row">
+        <span class="brief-icon">🌡</span>
+        <div class="brief-content">
+          <p class="brief-label">Clima del día</p>
+          <div class="brief-temps">
+            <span class="bt bt-hot">Mañana costa 27°C</span>
+            <span class="bt bt-warm">Tarde ruta 24°C</span>
+            <span class="bt bt-warm">Oaxaca noche 22°C</span>
+            <span class="bt bt-cool">Lluvia 40%</span>
+          </div>
+          <p class="brief-text" style="margin-top:4px">Mañana en la costa, tarde en ruta. La sierra enfría al subir — prever capas en la maleta lista.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">🎽</span>
+        <div class="brief-content">
+          <p class="brief-label">Qué llevar puesto</p>
+          <p class="brief-text">Ligero para la mañana de playa. Capas para el regreso en auto — la sierra baja la temperatura de golpe. Ropa cómoda de viaje.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">🌊</span>
+        <div class="brief-content">
+          <p class="brief-label">Actitud del día</p>
+          <p class="brief-text">Despedirse del Pacífico con gratitud. El viaje de regreso también es parte del viaje — disfruta la ruta.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -773,6 +985,37 @@ img{display:block;max-width:100%}
       <span class="chip">Pueblo Mágico Puebla</span>
       <span class="chip">Cemitas &amp; mole</span>
     </div>
+    <div class="day-brief">
+      <div class="brief-row">
+        <span class="brief-icon">🌡</span>
+        <div class="brief-content">
+          <p class="brief-label">Clima del día</p>
+          <div class="brief-temps">
+            <span class="bt bt-cool">Monte Albán 20°C</span>
+            <span class="bt bt-warm">Tarde 27°C</span>
+            <span class="bt bt-warm">Puebla 22°C</span>
+            <span class="bt bt-cool">Lluvia 50%</span>
+          </div>
+          <p class="brief-text" style="margin-top:4px">Madrugar en Monte Albán vale la pena — fresco y soleado. Tarde en Puebla agradable. Lluvia vespertina posible en ruta.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">👟</span>
+        <div class="brief-content">
+          <p class="brief-label">Qué llevar puesto</p>
+          <p class="brief-text">Tenis con buen agarre para la zona arqueológica (piso irregular, mucho sol). Chamarra ligera para CDMX. Ropa cómoda de viaje largo.</p>
+        </div>
+      </div>
+      <div class="brief-divider"></div>
+      <div class="brief-row">
+        <span class="brief-icon">🏛</span>
+        <div class="brief-content">
+          <p class="brief-label">Actitud del día</p>
+          <p class="brief-text">Cierre con historia. Monte Albán te pone en perspectiva. Llegamos juntos, regresamos transformados.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -780,7 +1023,7 @@ img{display:block;max-width:100%}
 <section class="group reveal" id="grupo" aria-label="El equipo y hospedaje">
   <p class="s-label">El equipo</p>
   <h2 class="s-title">11 personas,<br>1 aventura</h2>
-  <p class="s-sub">7 &ndash; 12 julio 2026 &nbsp;&middot;&nbsp; Playa Agua Blanca, Oaxaca</p>
+  <p class="s-sub">7 &ndash; 12 julio 2026 &nbsp;&middot;&nbsp; Playa Zipolite, Oaxaca</p>
 
   <div class="members">
     <div class="member">Dani</div>
@@ -802,26 +1045,23 @@ img{display:block;max-width:100%}
 
   <div class="houses">
     <div class="house">
-      <p class="house-name">Casa Lindavista</p>
-      <p class="house-stars">&#9733; 4.75 &nbsp;&middot;&nbsp; Playa Agua Blanca &nbsp;&middot;&nbsp; Superhost Thilo</p>
+      <p class="house-name">Casa Playa del Amor</p>
+      <p class="house-stars">&#9733; 5.0 &nbsp;&middot;&nbsp; Playa Zipolite &nbsp;&middot;&nbsp; Superanfitrión Luis Ricardo</p>
       <p class="house-info">
-        7 personas &nbsp;&middot;&nbsp; 4 recámaras &nbsp;&middot;&nbsp; 5 camas<br>
-        5 baños privados &nbsp;&middot;&nbsp; A/C &nbsp;&middot;&nbsp; WiFi &nbsp;&middot;&nbsp; Lavadora<br>
-        Directamente frente a la playa &nbsp;&middot;&nbsp; Surf
+        11 personas &nbsp;&middot;&nbsp; 6 habitaciones + apartamento<br>
+        Cocina completa &nbsp;&middot;&nbsp; Alberca &nbsp;&middot;&nbsp; Jardín &nbsp;&middot;&nbsp; Terraza<br>
+        30 metros de la playa &nbsp;&middot;&nbsp; Vista al mar (pisos 1 y 2)<br>
+        Desayuno incluido &nbsp;&middot;&nbsp; WiFi &nbsp;&middot;&nbsp; Estacionamiento
       </p>
-      <a class="house-link" href="https://www.airbnb.mx/rooms/590799215450390091" target="_blank" rel="noopener">
-        Ver en Airbnb &#x2197;
-      </a>
-    </div>
-    <div class="house">
-      <p class="house-name">Casa Chukum</p>
-      <p class="house-stars">&#9733; 4.75 &nbsp;&middot;&nbsp; Agua Blanca &nbsp;&middot;&nbsp; Superhost Thilo</p>
-      <p class="house-info">
-        4 personas &nbsp;&middot;&nbsp; 2 recámaras &nbsp;&middot;&nbsp; 4 camas<br>
-        2 baños &nbsp;&middot;&nbsp; Alberca &nbsp;&middot;&nbsp; WiFi &nbsp;&middot;&nbsp; Estacionamiento<br>
-        Diseño moderno &nbsp;&middot;&nbsp; 10 min a pie a la playa
-      </p>
-      <a class="house-link" href="https://www.airbnb.mx/rooms/818176314188123248" target="_blank" rel="noopener">
+      <div style="margin-top:0.85rem;font-size:0.7rem;color:rgba(28,22,10,0.48);line-height:1.9">
+        Hab 1 Nosotros &nbsp;&middot;&nbsp;
+        Hab 2 Duvas &nbsp;&middot;&nbsp;
+        Hab 3 Minis<br>
+        Hab 4 Las niñas &nbsp;&middot;&nbsp;
+        Hab 5 Jared &nbsp;&middot;&nbsp;
+        Hab 6 Alex y compañía
+      </div>
+      <a class="house-link" href="https://www.airbnb.mx/rooms/51435468" target="_blank" rel="noopener">
         Ver en Airbnb &#x2197;
       </a>
     </div>
