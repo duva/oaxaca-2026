@@ -135,9 +135,13 @@ body { font-family: 'Inter', sans-serif; background: #060812; color: #fff; overf
   background-size: cover;
   background-position: center;
   transform: scale(1.05);
-  transition: transform 0.7s ease;
+  transition: transform 0.7s ease, opacity 0.30s ease;
 }
 .story.active .story-bg { transform: scale(1); }
+.strip-card.strip-active {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 2px rgba(245,200,66,0.22);
+}
 
 /* Top gradient for readability of progress bar */
 .story-bg::after {
@@ -888,7 +892,7 @@ footer {
 
     <!-- ████ SLIDE 2 · DÍA 2 · HIERVE EL AGUA → ZIPOLITE ████ -->
     <div class="story" id="s2">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/33601908/pexels-photo-33601908.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 50%"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/33773803/pexels-photo-33773803.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 42%"></div>
       <div class="story-panel">
         <!-- MINI-MAP D2 -->
         <div class="mini-map">
@@ -1673,6 +1677,15 @@ footer {
     var prev = stories[current];
     prev.classList.remove('active');
     resetPaths(prev);
+    // Reset hero to default when leaving a slide
+    var prevBg = prev.querySelector('.story-bg');
+    if (prevBg && prevBg.dataset.defaultBg) {
+      prevBg.style.backgroundImage = prevBg.dataset.defaultBg;
+      prevBg.style.backgroundPosition = prevBg.dataset.defaultPos || 'center';
+    }
+    prev.querySelectorAll('.strip-card.strip-active').forEach(function(c) {
+      c.classList.remove('strip-active');
+    });
     // Move
     current = n;
     track.style.transform = 'translateX(-' + ((100 / TOTAL) * current) + '%)';
@@ -1739,85 +1752,42 @@ footer {
 
   // Init
   updateUI();
+
+  // Store default hero images so we can restore on slide change
+  stories.forEach(function(s) {
+    var bg = s.querySelector('.story-bg');
+    if (bg) {
+      bg.dataset.defaultBg  = bg.style.backgroundImage;
+      bg.dataset.defaultPos = bg.style.backgroundPosition || 'center';
+    }
+  });
 }());
 
-// ─── LIGHTBOX ────────────────────────────────────────
+// ─── HERO SWAP (strip cards → hero bg) ───────────────
 (function () {
   'use strict';
-  var lb      = document.getElementById('lb');
-  var lbImg   = document.getElementById('lb-img');
-  var lbCap   = document.getElementById('lb-cap');
-  var lbCtr   = document.getElementById('lb-counter');
-  var lbClose = document.getElementById('lb-close');
-  var lbPrev  = document.getElementById('lb-prev');
-  var lbNext  = document.getElementById('lb-next');
-  var lbBd    = document.getElementById('lb-backdrop');
-  var lbCards = [], lbIdx = 0, lbIsOpen = false;
 
-  function openLb(cards, idx) {
-    lbCards = cards; lbIdx = idx; lbIsOpen = true;
-    lbRender();
-    lb.classList.add('lb-open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLb() {
-    lb.classList.remove('lb-open');
-    lbIsOpen = false;
-    document.body.style.overflow = '';
-    setTimeout(function () { lbImg.src = ''; }, 280);
-  }
-  function lbRender() {
-    var card = lbCards[lbIdx];
-    lbImg.classList.add('lb-fade');
-    var tmp = new Image();
-    tmp.onload = function () {
-      lbImg.src = tmp.src;
-      lbImg.classList.remove('lb-fade');
-    };
-    tmp.src = card.dataset.src;
-    lbCap.textContent = card.dataset.label || '';
-    lbCtr.textContent = (lbIdx + 1) + ' / ' + lbCards.length;
-    lbPrev.classList.toggle('lb-hidden', lbIdx === 0);
-    lbNext.classList.toggle('lb-hidden', lbIdx === lbCards.length - 1);
-  }
-
-  lbClose.addEventListener('click', closeLb);
-  lbBd.addEventListener('click', closeLb);
-  lbPrev.addEventListener('click', function () {
-    if (lbIdx > 0) { lbIdx--; lbRender(); }
-  });
-  lbNext.addEventListener('click', function () {
-    if (lbIdx < lbCards.length - 1) { lbIdx++; lbRender(); }
-  });
-
-  // Swipe en lightbox
-  var lbTX = 0;
-  lb.addEventListener('touchstart', function (e) {
-    lbTX = e.touches[0].clientX;
-  }, { passive: true });
-  lb.addEventListener('touchend', function (e) {
-    var diff = lbTX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 42) {
-      if (diff > 0 && lbIdx < lbCards.length - 1) { lbIdx++; lbRender(); }
-      else if (diff < 0 && lbIdx > 0) { lbIdx--; lbRender(); }
-    }
-  }, { passive: true });
-
-  // Keyboard lightbox
-  document.addEventListener('keydown', function (e) {
-    if (!lbIsOpen) return;
-    if (e.key === 'Escape') { closeLb(); }
-    if (e.key === 'ArrowLeft' && lbIdx > 0) { lbIdx--; lbRender(); }
-    if (e.key === 'ArrowRight' && lbIdx < lbCards.length - 1) { lbIdx++; lbRender(); }
-  });
-
-  // Conectar cards a lightbox
   document.querySelectorAll('.photo-strip').forEach(function (strip) {
-    var cards = Array.from(strip.querySelectorAll('.strip-card[data-src]'));
-    cards.forEach(function (card, idx) {
+    var cards   = Array.from(strip.querySelectorAll('.strip-card[data-src]'));
+    var story   = strip.closest('.story');
+    var storyBg = story ? story.querySelector('.story-bg') : null;
+    if (!storyBg) return;
+
+    cards.forEach(function (card) {
       card.addEventListener('click', function (e) {
         e.stopPropagation();
-        openLb(cards, idx);
+
+        // Mark active strip card
+        cards.forEach(function (c) { c.classList.remove('strip-active'); });
+        card.classList.add('strip-active');
+
+        // Fade out → swap image → fade in
+        storyBg.style.opacity = '0';
+        setTimeout(function () {
+          storyBg.style.backgroundImage = "url('" + card.dataset.src + "')";
+          storyBg.style.backgroundPosition = 'center 50%';
+          storyBg.style.opacity = '1';
+        }, 260);
       });
     });
   });
