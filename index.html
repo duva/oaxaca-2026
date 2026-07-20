@@ -271,7 +271,7 @@ body { font-family: 'Inter', sans-serif; background: #060812; color: #fff; overf
 }
 
 /* ─── MINI-MAP ───────────────────────────────── */
-.mini-map { width: 100%; margin-bottom: 0.75rem; }
+.mini-map { width: 100%; margin-bottom: 0.75rem; border-radius: 8px; overflow: hidden; }
 .mini-map svg { width: 100%; display: block; }
 .mm-path {
   stroke-dasharray: 1000;
@@ -723,6 +723,24 @@ footer {
 #lb-next { right: 0.5rem; }
 #lb-prev.lb-hidden, #lb-next.lb-hidden { opacity: 0.12; pointer-events: none; }
 
+/* ─── FIXED / FLEX TIME INDICATORS ──────────── */
+.fixed-tag {
+  display: inline-block;
+  font-size: 0.34rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(245,200,66,0.10);
+  border: 1px solid rgba(245,200,66,0.28);
+  border-radius: 3px;
+  padding: 1px 4px;
+  margin-left: 3px;
+  vertical-align: middle;
+  line-height: 1.6;
+}
+.sched-time.flex { color: rgba(245,200,66,0.58); }
+
 /* ─── RESPONSIVE ─────────────────────────────── */
 @media (min-width: 480px) {
   .cover-title { font-size: 5rem; }
@@ -787,23 +805,55 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D1 -->
         <div class="mini-map">
-          <svg viewBox="0 0 280 66" height="66" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 280 80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fondo mapa: CDMX urbano → montañas Oaxaca -->
+            <rect width="280" height="80" fill="rgba(5,9,22,0.94)"/>
+            <!-- Grid urbano CDMX (izq) -->
+            <line x1="0" y1="22" x2="75" y2="20" stroke="rgba(50,65,110,0.42)" stroke-width="0.8"/>
+            <line x1="0" y1="40" x2="75" y2="38" stroke="rgba(50,65,110,0.35)" stroke-width="0.7"/>
+            <line x1="0" y1="58" x2="75" y2="56" stroke="rgba(50,65,110,0.28)" stroke-width="0.6"/>
+            <line x1="28" y1="0" x2="27" y2="80" stroke="rgba(50,65,110,0.22)" stroke-width="0.7"/>
+            <line x1="52" y1="0" x2="51" y2="80" stroke="rgba(50,65,110,0.18)" stroke-width="0.6"/>
+            <!-- Brillo ciudad CDMX -->
+            <circle cx="28" cy="40" r="17" fill="rgba(55,70,190,0.13)"/>
+            <!-- Terreno montañoso (centro-der) -->
+            <ellipse cx="178" cy="46" rx="78" ry="32" fill="rgba(20,48,20,0.28)"/>
+            <ellipse cx="235" cy="38" rx="48" ry="21" fill="rgba(18,42,18,0.22)"/>
+            <!-- Curvas de nivel -->
+            <path d="M95,54 Q135,34 178,30 Q215,26 248,30" stroke="rgba(35,65,35,0.36)" stroke-width="0.8" fill="none"/>
+            <path d="M100,62 Q140,44 182,40 Q220,36 250,40" stroke="rgba(35,65,35,0.22)" stroke-width="0.6" fill="none"/>
+            <!-- Autopista punteada -->
+            <path d="M5,38 Q60,36 120,37 Q175,38 232,36 Q255,35 275,34" stroke="rgba(80,95,155,0.32)" stroke-width="1.5" fill="none" stroke-dasharray="7,4"/>
+            <!-- Brillo ciudad Oaxaca -->
+            <circle cx="252" cy="35" r="14" fill="rgba(55,70,190,0.13)"/>
+            <!-- Ruta -->
             <path class="mm-path" d="M28,40 C60,38 88,32 118,34 C152,37 188,39 252,35"
-              stroke="rgba(245,200,66,0.65)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              stroke="rgba(245,200,66,0.72)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             <circle cx="28" cy="40" r="4.5" fill="#f5c842"/>
-            <circle cx="252" cy="35" r="4.5" fill="rgba(255,255,255,0.70)"/>
-            <text x="28" y="58" font-size="7.5" fill="rgba(255,255,255,0.42)" text-anchor="middle" font-family="Inter,sans-serif">CDMX</text>
-            <text x="252" y="53" font-size="7.5" fill="rgba(255,255,255,0.42)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
-            <!-- animated car (glow) -->
-            <circle r="7" fill="rgba(245,200,66,0.16)">
-              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear"
+            <circle cx="252" cy="35" r="4.5" fill="rgba(255,255,255,0.78)"/>
+            <text x="28" y="58" font-size="7.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">CDMX</text>
+            <text x="252" y="53" font-size="7.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
+            <!-- Carrito animado top-down, rotate="auto" -->
+            <g>
+              <path d="M 7 -2.5 L 24 -9 L 24 9 L 7 2.5 Z" fill="rgba(255,252,150,0.07)"/>
+              <circle r="10" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="9;14;9" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.30;0.14" dur="2.2s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
+              <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#0a0e20"/>
+              <line x1="1.5" y1="-2.8" x2="5" y2="-2.8" stroke="rgba(255,255,255,0.45)" stroke-width="0.9" stroke-linecap="round"/>
+              <ellipse cx="6.5" cy="-2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="6.5" cy="2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <rect x="-5.5" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="-5.5" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" rotate="auto"
                 path="M28,40 C60,38 88,32 118,34 C152,37 188,39 252,35"/>
-            </circle>
-            <!-- animated car (dot) -->
-            <circle r="3.5" fill="#f5c842">
-              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear"
-                path="M28,40 C60,38 88,32 118,34 C152,37 188,39 252,35"/>
-            </circle>
+            </g>
           </svg>
         </div>
         <!-- FOTO STRIP D1 -->
@@ -830,35 +880,34 @@ footer {
         <p class="day-route">Ciudad de México → Oaxaca Ciudad</p>
         <div class="sched">
           <div class="sched-item">
-            <span class="sched-time">07:00</span>
+            <span class="sched-time">06:00 <span class="fixed-tag">FIJO</span></span>
             <span class="sched-icon">☕</span>
-            <div><div class="sched-text">Salida CDMX — café, playlist y carretera</div></div>
+            <div><div class="sched-text">Salida desde Starbucks (Caseta San Marcos) — café, playlist y carretera</div>
+            <div class="sched-note">⚡ Salida puntual — ~5h de viaje más casetas</div></div>
           </div>
           <div class="sched-item">
-            <span class="sched-time">~12:30</span>
-            <span class="sched-icon">🌆</span>
-            <div>
-              <div class="sched-text">Llegada Oaxaca · check-in hostal</div>
-              <div class="sched-note">~5h de viaje + casetas</div>
-            </div>
+            <span class="sched-time flex">~11:00</span>
+            <span class="sched-icon">🍳</span>
+            <div><div class="sched-text">Llegada Oaxaca — desayuno en la ciudad</div>
+            <div class="sched-note">Opciones: Mercado 20 de Noviembre · La Biznaga · Itanoni</div></div>
           </div>
           <div class="sched-item">
-            <span class="sched-time">14:00</span>
-            <span class="sched-icon">🍽️</span>
-            <div><div class="sched-text">Comida en el Mercado 20 de Noviembre</div></div>
+            <span class="sched-time flex">~12:30</span>
+            <span class="sched-icon">🏨</span>
+            <div><div class="sched-text">Check-in hotel + descanso</div>
+            <div class="sched-note">Opciones: 12:30 · 13:00 · 13:30 según el hotel</div></div>
           </div>
           <div class="sched-item">
-            <span class="sched-time">Tarde</span>
+            <span class="sched-time flex">~19:00</span>
             <span class="sched-icon">🚶</span>
-            <div><div class="sched-text">Centro histórico · Zócalo · mezcalería</div></div>
+            <div><div class="sched-text">Centro histórico — cena ligera y caminata por el Zócalo</div>
+            <div class="sched-note">Opciones de salida: 19:00 · 19:30 · 20:00</div></div>
           </div>
           <div class="sched-item">
-            <span class="sched-time">21:00</span>
+            <span class="sched-time">22:00 <span class="fixed-tag">FIJO</span></span>
             <span class="sched-icon">🌙</span>
-            <div>
-              <div class="sched-text">Cena ligera · descanso</div>
-              <div class="sched-note">Mañana madrugamos ⚡</div>
-            </div>
+            <div><div class="sched-text">De regreso al hotel — descanso total</div>
+            <div class="sched-note">Mañana 06:00 en punto, sin excepciones ⚡</div></div>
           </div>
         </div>
         <div class="brief-card">
@@ -897,25 +946,58 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D2 -->
         <div class="mini-map">
-          <svg viewBox="0 0 280 72" height="72" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 280 80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fondo mapa: montañas sierra → bajada a costa -->
+            <rect width="280" height="80" fill="rgba(5,9,22,0.94)"/>
+            <!-- Brillo Oaxaca origen -->
+            <circle cx="22" cy="54" r="15" fill="rgba(55,70,190,0.12)"/>
+            <!-- Terreno montañoso HeA y SJdP -->
+            <ellipse cx="88" cy="38" rx="60" ry="30" fill="rgba(20,50,20,0.30)"/>
+            <ellipse cx="145" cy="24" rx="48" ry="22" fill="rgba(18,46,18,0.26)"/>
+            <!-- Cima SJdP (nube/niebla) -->
+            <ellipse cx="155" cy="18" rx="30" ry="12" fill="rgba(80,100,130,0.18)"/>
+            <!-- Curvas de nivel sierra -->
+            <path d="M30,62 Q65,40 100,30 Q132,22 162,26 Q180,30 195,42" stroke="rgba(35,68,35,0.38)" stroke-width="0.9" fill="none"/>
+            <path d="M35,70 Q70,48 106,38 Q138,30 168,34 Q186,38 200,50" stroke="rgba(35,68,35,0.24)" stroke-width="0.7" fill="none"/>
+            <!-- Zona costera (der) -->
+            <ellipse cx="232" cy="58" rx="55" ry="22" fill="rgba(10,48,95,0.24)"/>
+            <!-- Líneas de playa/océano -->
+            <path d="M190,54 Q215,48 245,52 Q265,55 280,50" stroke="rgba(30,105,170,0.32)" stroke-width="0.9" fill="none"/>
+            <path d="M188,63 Q214,57 244,61 Q264,64 280,60" stroke="rgba(30,105,170,0.22)" stroke-width="0.7" fill="none"/>
+            <!-- Brillo Zipolite costa -->
+            <circle cx="252" cy="60" r="13" fill="rgba(15,65,140,0.16)"/>
+            <!-- Ruta -->
             <path class="mm-path" d="M22,54 C45,50 58,34 86,28 C110,22 132,20 155,22 C176,25 196,46 252,60"
-              stroke="rgba(245,200,66,0.65)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              stroke="rgba(245,200,66,0.72)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             <circle cx="22" cy="54" r="4" fill="#f5c842"/>
-            <circle cx="86" cy="28" r="3" fill="rgba(255,255,255,0.50)"/>
-            <circle cx="155" cy="22" r="3" fill="rgba(255,255,255,0.50)"/>
-            <circle cx="252" cy="60" r="4" fill="rgba(255,255,255,0.70)"/>
-            <text x="22" y="67" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
-            <text x="86" y="21" font-size="6" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="Inter,sans-serif">HeA</text>
-            <text x="155" y="15" font-size="6" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="Inter,sans-serif">SJdP</text>
-            <text x="252" y="70" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">Zipolite</text>
-            <circle r="7" fill="rgba(245,200,66,0.16)">
-              <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+            <circle cx="86" cy="28" r="3" fill="rgba(255,255,255,0.55)"/>
+            <circle cx="155" cy="22" r="3" fill="rgba(255,255,255,0.55)"/>
+            <circle cx="252" cy="60" r="4" fill="rgba(255,255,255,0.75)"/>
+            <text x="22" y="67" font-size="6.5" fill="rgba(255,255,255,0.48)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
+            <text x="86" y="21" font-size="6" fill="rgba(255,255,255,0.45)" text-anchor="middle" font-family="Inter,sans-serif">HeA</text>
+            <text x="155" y="15" font-size="6" fill="rgba(255,255,255,0.45)" text-anchor="middle" font-family="Inter,sans-serif">SJdP</text>
+            <text x="252" y="72" font-size="6.5" fill="rgba(255,255,255,0.48)" text-anchor="middle" font-family="Inter,sans-serif">Zipolite</text>
+            <!-- Carrito animado -->
+            <g>
+              <path d="M 7 -2.5 L 24 -9 L 24 9 L 7 2.5 Z" fill="rgba(255,252,150,0.07)"/>
+              <circle r="10" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="9;14;9" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.30;0.14" dur="2.2s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
+              <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#0a0e20"/>
+              <line x1="1.5" y1="-2.8" x2="5" y2="-2.8" stroke="rgba(255,255,255,0.45)" stroke-width="0.9" stroke-linecap="round"/>
+              <ellipse cx="6.5" cy="-2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="6.5" cy="2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <rect x="-5.5" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="-5.5" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear" rotate="auto"
                 path="M22,54 C45,50 58,34 86,28 C110,22 132,20 155,22 C176,25 196,46 252,60"/>
-            </circle>
-            <circle r="3.5" fill="#f5c842">
-              <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
-                path="M22,54 C45,50 58,34 86,28 C110,22 132,20 155,22 C176,25 196,46 252,60"/>
-            </circle>
+            </g>
           </svg>
         </div>
         <!-- FOTO STRIP D2 -->
@@ -1025,25 +1107,56 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D3 -->
         <div class="mini-map">
-          <svg viewBox="0 0 280 66" height="66" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 280 80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fondo mapa: costa oaxaqueña, océano Pacífico al norte -->
+            <rect width="280" height="80" fill="rgba(4,9,20,0.95)"/>
+            <!-- Océano Pacífico (zona superior) -->
+            <rect x="0" y="0" width="280" height="40" fill="rgba(8,40,90,0.20)"/>
+            <!-- Ondas del océano -->
+            <path d="M0,14 Q35,11 70,14 Q105,17 140,14 Q175,11 210,14 Q245,17 280,14" stroke="rgba(35,115,185,0.30)" stroke-width="0.9" fill="none"/>
+            <path d="M0,24 Q40,21 80,24 Q120,27 160,24 Q200,21 240,24 Q265,26 280,23" stroke="rgba(35,115,185,0.22)" stroke-width="0.7" fill="none"/>
+            <path d="M0,34 Q50,31 100,34 Q150,37 200,34 Q240,31 280,34" stroke="rgba(35,115,185,0.16)" stroke-width="0.6" fill="none"/>
+            <!-- Línea costera -->
+            <path d="M0,41 Q70,37 140,41 Q210,45 280,40" stroke="rgba(220,195,130,0.32)" stroke-width="2" fill="none"/>
+            <!-- Playa/tierra (zona inferior) -->
+            <ellipse cx="140" cy="62" rx="140" ry="20" fill="rgba(32,26,12,0.28)"/>
+            <!-- Laguna La Ventanilla -->
+            <ellipse cx="102" cy="34" rx="16" ry="9" fill="rgba(15,75,120,0.38)"/>
+            <ellipse cx="102" cy="34" rx="12" ry="6" fill="rgba(20,90,140,0.22)"/>
+            <!-- Brillo Punta Cometa -->
+            <circle cx="258" cy="44" r="14" fill="rgba(245,200,66,0.10)"/>
+            <!-- Ruta -->
             <path class="mm-path" d="M22,46 C52,42 72,38 102,40 C132,42 158,38 186,42 C210,46 232,48 258,44"
-              stroke="rgba(245,200,66,0.65)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              stroke="rgba(245,200,66,0.72)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             <circle cx="22" cy="46" r="4" fill="#f5c842"/>
-            <circle cx="102" cy="40" r="3" fill="rgba(255,255,255,0.50)"/>
-            <circle cx="186" cy="42" r="3" fill="rgba(255,255,255,0.50)"/>
-            <circle cx="258" cy="44" r="4" fill="rgba(255,255,255,0.70)"/>
-            <text x="22" y="61" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">Airbnb</text>
-            <text x="102" y="55" font-size="6" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="Inter,sans-serif">Ventanilla</text>
-            <text x="186" y="57" font-size="6" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="Inter,sans-serif">Mazunte</text>
-            <text x="258" y="35" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">P.Cometa</text>
-            <circle r="7" fill="rgba(245,200,66,0.16)">
-              <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear"
+            <circle cx="102" cy="40" r="3" fill="rgba(255,255,255,0.55)"/>
+            <circle cx="186" cy="42" r="3" fill="rgba(255,255,255,0.55)"/>
+            <circle cx="258" cy="44" r="4" fill="rgba(255,255,255,0.75)"/>
+            <text x="22" y="62" font-size="6.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">Airbnb</text>
+            <text x="102" y="55" font-size="6" fill="rgba(255,255,255,0.45)" text-anchor="middle" font-family="Inter,sans-serif">Ventanilla</text>
+            <text x="186" y="57" font-size="6" fill="rgba(255,255,255,0.45)" text-anchor="middle" font-family="Inter,sans-serif">Mazunte</text>
+            <text x="258" y="33" font-size="6.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">P.Cometa</text>
+            <!-- Carrito animado -->
+            <g>
+              <path d="M 7 -2.5 L 24 -9 L 24 9 L 7 2.5 Z" fill="rgba(255,252,150,0.07)"/>
+              <circle r="10" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="9;14;9" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.30;0.14" dur="2.2s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
+              <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#0a0e20"/>
+              <line x1="1.5" y1="-2.8" x2="5" y2="-2.8" stroke="rgba(255,255,255,0.45)" stroke-width="0.9" stroke-linecap="round"/>
+              <ellipse cx="6.5" cy="-2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="6.5" cy="2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <rect x="-5.5" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="-5.5" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" rotate="auto"
                 path="M22,46 C52,42 72,38 102,40 C132,42 158,38 186,42 C210,46 232,48 258,44"/>
-            </circle>
-            <circle r="3.5" fill="#f5c842">
-              <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear"
-                path="M22,46 C52,42 72,38 102,40 C132,42 158,38 186,42 C210,46 232,48 258,44"/>
-            </circle>
+            </g>
           </svg>
         </div>
         <!-- FOTO STRIP D3 -->
@@ -1138,23 +1251,68 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D4 -->
         <div class="mini-map">
-          <svg viewBox="0 0 280 66" height="66" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 280 80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fondo mapa: océano Pacífico profundo + playa cumpleaños -->
+            <rect width="280" height="80" fill="rgba(3,8,20,0.95)"/>
+            <!-- Océano profundo (zona superior) -->
+            <rect x="0" y="0" width="280" height="52" fill="rgba(6,35,85,0.24)"/>
+            <!-- Ondas del Pacífico -->
+            <path d="M0,12 Q45,9 90,12 Q135,15 180,12 Q225,9 280,12" stroke="rgba(40,125,195,0.32)" stroke-width="1" fill="none"/>
+            <path d="M0,22 Q50,19 100,22 Q150,25 200,22 Q245,19 280,22" stroke="rgba(40,125,195,0.24)" stroke-width="0.8" fill="none"/>
+            <path d="M0,34 Q55,31 110,34 Q165,37 220,34 Q255,31 280,34" stroke="rgba(40,125,195,0.18)" stroke-width="0.7" fill="none"/>
+            <path d="M0,46 Q60,43 120,46 Q180,49 240,46 Q265,44 280,46" stroke="rgba(40,125,195,0.13)" stroke-width="0.6" fill="none"/>
+            <!-- Zona delfines (glow azul vivo) -->
+            <circle cx="140" cy="30" r="24" fill="rgba(20,90,160,0.18)"/>
+            <circle cx="140" cy="30" r="14" fill="rgba(30,110,185,0.15)">
+              <animate attributeName="r" values="12;18;12" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.12;0.22;0.12" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Zona tortugas (glow verde-azulado) -->
+            <circle cx="260" cy="34" r="20" fill="rgba(10,90,120,0.18)"/>
+            <!-- Línea costera playera -->
+            <path d="M0,54 Q80,50 160,53 Q220,56 280,52" stroke="rgba(220,195,130,0.35)" stroke-width="2.2" fill="none"/>
+            <!-- Playa cumpleaños -->
+            <ellipse cx="140" cy="68" rx="140" ry="16" fill="rgba(35,28,12,0.30)"/>
+            <!-- Destellos cumple (estrellas sutiles) -->
+            <circle cx="22" cy="68" r="1.5" fill="rgba(245,200,66,0.55)">
+              <animate attributeName="opacity" values="0.55;1;0.55" dur="1.8s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="260" cy="70" r="1.5" fill="rgba(245,200,66,0.55)">
+              <animate attributeName="opacity" values="0.55;1;0.55" dur="2.2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="140" cy="72" r="1.5" fill="rgba(245,200,66,0.55)">
+              <animate attributeName="opacity" values="0.55;1;0.55" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Ruta (gold más brillante por ser día especial) -->
             <path class="mm-path" d="M30,40 C60,34 100,30 140,32 C165,34 188,36 214,34 C234,32 252,30 260,38"
-              stroke="rgba(245,200,66,0.80)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              stroke="rgba(245,200,66,0.85)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
             <circle cx="30" cy="40" r="4" fill="#f5c842"/>
-            <circle cx="140" cy="32" r="3" fill="rgba(255,255,255,0.50)"/>
-            <circle cx="260" cy="38" r="4" fill="rgba(255,255,255,0.70)"/>
-            <text x="30" y="56" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">Airbnb</text>
-            <text x="140" y="25" font-size="6.5" fill="rgba(255,200,66,0.60)" text-anchor="middle" font-family="Inter,sans-serif">🐬 Delfines</text>
-            <text x="260" y="53" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">🐢 Tortugas</text>
-            <circle r="7" fill="rgba(245,200,66,0.20)">
-              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear"
+            <circle cx="140" cy="32" r="3.5" fill="rgba(245,200,66,0.80)"/>
+            <circle cx="260" cy="38" r="4" fill="rgba(255,255,255,0.75)"/>
+            <text x="30" y="56" font-size="6.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">Airbnb</text>
+            <text x="140" y="25" font-size="6.5" fill="rgba(245,200,66,0.70)" text-anchor="middle" font-family="Inter,sans-serif">🐬 Delfines</text>
+            <text x="260" y="52" font-size="6.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">🐢 Tortugas</text>
+            <!-- Carrito animado -->
+            <g>
+              <path d="M 7 -2.5 L 24 -9 L 24 9 L 7 2.5 Z" fill="rgba(255,252,150,0.07)"/>
+              <circle r="10" fill="rgba(245,200,66,0.20)">
+                <animate attributeName="r" values="9;15;9" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.16;0.36;0.16" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
+              <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#0a0e20"/>
+              <line x1="1.5" y1="-2.8" x2="5" y2="-2.8" stroke="rgba(255,255,255,0.45)" stroke-width="0.9" stroke-linecap="round"/>
+              <ellipse cx="6.5" cy="-2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="6.5" cy="2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <rect x="-5.5" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="-5.5" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" rotate="auto"
                 path="M30,40 C60,34 100,30 140,32 C165,34 188,36 214,34 C234,32 252,30 260,38"/>
-            </circle>
-            <circle r="3.5" fill="#f5c842">
-              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear"
-                path="M30,40 C60,34 100,30 140,32 C165,34 188,36 214,34 C234,32 252,30 260,38"/>
-            </circle>
+            </g>
           </svg>
         </div>
         <!-- FOTO STRIP D4 -->
@@ -1246,21 +1404,53 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D5 -->
         <div class="mini-map">
-          <svg viewBox="0 0 280 66" height="66" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 280 80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fondo mapa: costa → subida a la sierra → Oaxaca -->
+            <rect width="280" height="80" fill="rgba(5,9,22,0.94)"/>
+            <!-- Zona costera Zipolite (izq) -->
+            <ellipse cx="45" cy="60" rx="58" ry="24" fill="rgba(10,45,95,0.22)"/>
+            <circle cx="22" cy="58" r="14" fill="rgba(15,65,145,0.14)"/>
+            <!-- Líneas de playa y océano -->
+            <path d="M0,52 Q28,48 58,52 Q88,56 120,50" stroke="rgba(30,105,170,0.30)" stroke-width="0.9" fill="none"/>
+            <path d="M0,62 Q32,58 62,62 Q92,66 125,60" stroke="rgba(30,105,170,0.20)" stroke-width="0.7" fill="none"/>
+            <!-- Transición / carretera sierra -->
+            <path d="M80,58 Q120,46 155,36 Q185,28 210,26 Q235,25 255,28" stroke="rgba(80,95,155,0.28)" stroke-width="1.4" fill="none" stroke-dasharray="7,4"/>
+            <!-- Terreno montañoso (centro-der) -->
+            <ellipse cx="175" cy="34" rx="72" ry="28" fill="rgba(20,50,20,0.28)"/>
+            <ellipse cx="238" cy="30" rx="50" ry="22" fill="rgba(18,44,18,0.22)"/>
+            <!-- Curvas de nivel -->
+            <path d="M135,48 Q165,32 195,26 Q225,22 255,26" stroke="rgba(35,65,35,0.36)" stroke-width="0.8" fill="none"/>
+            <path d="M140,56 Q170,40 200,34 Q230,30 258,34" stroke="rgba(35,65,35,0.24)" stroke-width="0.6" fill="none"/>
+            <!-- Brillo Oaxaca ciudad -->
+            <circle cx="258" cy="34" r="15" fill="rgba(55,70,190,0.13)"/>
+            <!-- Ruta -->
             <path class="mm-path" d="M22,58 C50,54 72,48 102,40 C132,32 155,28 180,26 C205,24 232,30 258,34"
-              stroke="rgba(245,200,66,0.65)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              stroke="rgba(245,200,66,0.72)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             <circle cx="22" cy="58" r="4" fill="#f5c842"/>
-            <circle cx="258" cy="34" r="4" fill="rgba(255,255,255,0.70)"/>
-            <text x="22" y="66" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">Zipolite</text>
-            <text x="258" y="48" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
-            <circle r="7" fill="rgba(245,200,66,0.16)">
-              <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear"
+            <circle cx="258" cy="34" r="4" fill="rgba(255,255,255,0.75)"/>
+            <text x="22" y="72" font-size="6.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">Zipolite</text>
+            <text x="258" y="48" font-size="6.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
+            <!-- Carrito animado -->
+            <g>
+              <path d="M 7 -2.5 L 24 -9 L 24 9 L 7 2.5 Z" fill="rgba(255,252,150,0.07)"/>
+              <circle r="10" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="9;14;9" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.30;0.14" dur="2.2s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
+              <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#0a0e20"/>
+              <line x1="1.5" y1="-2.8" x2="5" y2="-2.8" stroke="rgba(255,255,255,0.45)" stroke-width="0.9" stroke-linecap="round"/>
+              <ellipse cx="6.5" cy="-2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="6.5" cy="2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <rect x="-5.5" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="-5.5" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" rotate="auto"
                 path="M22,58 C50,54 72,48 102,40 C132,32 155,28 180,26 C205,24 232,30 258,34"/>
-            </circle>
-            <circle r="3.5" fill="#f5c842">
-              <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear"
-                path="M22,58 C50,54 72,48 102,40 C132,32 155,28 180,26 C205,24 232,30 258,34"/>
-            </circle>
+            </g>
           </svg>
         </div>
         <!-- FOTO STRIP D5 -->
@@ -1356,25 +1546,68 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D6 -->
         <div class="mini-map">
-          <svg viewBox="0 0 288 66" height="66" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 288 80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fondo mapa: Oaxaca → sierra → Puebla → grid urbano CDMX -->
+            <rect width="288" height="80" fill="rgba(5,9,22,0.94)"/>
+            <!-- Brillo Oaxaca origen -->
+            <circle cx="22" cy="52" r="15" fill="rgba(55,70,190,0.12)"/>
+            <!-- Monte Albán (zona arqueológica, colina) -->
+            <ellipse cx="62" cy="44" rx="28" ry="16" fill="rgba(55,40,18,0.28)"/>
+            <!-- Terreno montañoso Sierra Madre -->
+            <ellipse cx="130" cy="34" rx="75" ry="28" fill="rgba(20,50,20,0.28)"/>
+            <ellipse cx="195" cy="30" rx="60" ry="22" fill="rgba(18,44,18,0.22)"/>
+            <!-- Curvas de nivel -->
+            <path d="M55,56 Q95,38 135,30 Q170,24 205,26 Q230,28 250,30" stroke="rgba(35,65,35,0.36)" stroke-width="0.8" fill="none"/>
+            <path d="M60,64 Q100,46 140,38 Q175,32 210,34 Q235,36 252,38" stroke="rgba(35,65,35,0.24)" stroke-width="0.6" fill="none"/>
+            <!-- Autopista Oaxaca-Puebla-CDMX punteada -->
+            <path d="M22,50 Q60,36 115,30 Q165,26 215,26 Q245,25 272,22" stroke="rgba(80,95,155,0.30)" stroke-width="1.4" fill="none" stroke-dasharray="7,4"/>
+            <!-- Grid urbano Puebla (centro) -->
+            <line x1="162" y1="20" x2="160" y2="50" stroke="rgba(60,75,120,0.26)" stroke-width="0.7"/>
+            <line x1="178" y1="20" x2="176" y2="50" stroke="rgba(60,75,120,0.22)" stroke-width="0.6"/>
+            <line x1="150" y1="26" x2="195" y2="24" stroke="rgba(60,75,120,0.22)" stroke-width="0.6"/>
+            <line x1="152" y1="36" x2="196" y2="34" stroke="rgba(60,75,120,0.18)" stroke-width="0.5"/>
+            <!-- Brillo Puebla -->
+            <circle cx="175" cy="29" r="12" fill="rgba(90,70,170,0.14)"/>
+            <!-- Grid urbano CDMX (der) -->
+            <line x1="250" y1="0" x2="248" y2="80" stroke="rgba(50,65,110,0.30)" stroke-width="0.8"/>
+            <line x1="265" y1="0" x2="263" y2="80" stroke="rgba(50,65,110,0.24)" stroke-width="0.7"/>
+            <line x1="235" y1="12" x2="288" y2="10" stroke="rgba(50,65,110,0.26)" stroke-width="0.7"/>
+            <line x1="237" y1="26" x2="288" y2="24" stroke="rgba(50,65,110,0.22)" stroke-width="0.6"/>
+            <line x1="238" y1="40" x2="288" y2="38" stroke="rgba(50,65,110,0.18)" stroke-width="0.5"/>
+            <!-- Brillo CDMX (bandera de llegada) -->
+            <circle cx="272" cy="24" r="17" fill="rgba(55,70,190,0.16)"/>
+            <!-- Ruta -->
             <path class="mm-path" d="M22,52 C45,46 58,36 82,32 C115,28 162,30 215,28 C240,27 260,27 272,24"
-              stroke="rgba(245,200,66,0.65)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              stroke="rgba(245,200,66,0.72)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             <circle cx="22" cy="52" r="4" fill="#f5c842"/>
-            <circle cx="62" cy="39" r="3" fill="rgba(255,255,255,0.50)"/>
-            <circle cx="175" cy="29" r="3" fill="rgba(255,255,255,0.50)"/>
-            <circle cx="272" cy="24" r="4" fill="rgba(255,255,255,0.70)"/>
-            <text x="22" y="64" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
-            <text x="62" y="33" font-size="5.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="Inter,sans-serif">M.Albán</text>
-            <text x="175" y="44" font-size="6" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="Inter,sans-serif">Puebla</text>
-            <text x="272" y="40" font-size="6.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="Inter,sans-serif">CDMX 🏁</text>
-            <circle r="7" fill="rgba(245,200,66,0.16)">
-              <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+            <circle cx="62" cy="39" r="3" fill="rgba(255,255,255,0.55)"/>
+            <circle cx="175" cy="29" r="3" fill="rgba(255,255,255,0.55)"/>
+            <circle cx="272" cy="24" r="4" fill="rgba(255,255,255,0.78)"/>
+            <text x="22" y="65" font-size="6.5" fill="rgba(255,255,255,0.50)" text-anchor="middle" font-family="Inter,sans-serif">Oaxaca</text>
+            <text x="62" y="32" font-size="5.5" fill="rgba(255,255,255,0.45)" text-anchor="middle" font-family="Inter,sans-serif">M.Albán</text>
+            <text x="175" y="44" font-size="6" fill="rgba(255,255,255,0.45)" text-anchor="middle" font-family="Inter,sans-serif">Puebla</text>
+            <text x="272" y="40" font-size="6.5" fill="rgba(245,200,66,0.70)" text-anchor="middle" font-family="Inter,sans-serif">CDMX 🏁</text>
+            <!-- Carrito animado -->
+            <g>
+              <path d="M 7 -2.5 L 24 -9 L 24 9 L 7 2.5 Z" fill="rgba(255,252,150,0.07)"/>
+              <circle r="10" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="9;14;9" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.30;0.14" dur="2.2s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
+              <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#0a0e20"/>
+              <line x1="1.5" y1="-2.8" x2="5" y2="-2.8" stroke="rgba(255,255,255,0.45)" stroke-width="0.9" stroke-linecap="round"/>
+              <ellipse cx="6.5" cy="-2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="6.5" cy="2.5" rx="1.2" ry="0.9" fill="rgba(255,252,180,0.95)"/>
+              <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
+              <rect x="-5.5" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="-5.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="-5.5" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <rect x="2.8" y="3.5" width="3" height="2" rx="0.8" fill="#080c1e"/>
+              <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear" rotate="auto"
                 path="M22,52 C45,46 58,36 82,32 C115,28 162,30 215,28 C240,27 260,27 272,24"/>
-            </circle>
-            <circle r="3.5" fill="#f5c842">
-              <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
-                path="M22,52 C45,46 58,36 82,32 C115,28 162,30 215,28 C240,27 260,27 272,24"/>
-            </circle>
+            </g>
           </svg>
         </div>
         <!-- FOTO STRIP D6 -->
