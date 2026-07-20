@@ -807,7 +807,7 @@ footer {
     <span class="tb-logo">Oaxaca '26</span>
     <span id="day-label">Cover</span>
   </div>
-  <span id="slide-counter">1 / 7</span>
+  <span id="slide-counter">1 / 8</span>
 </div>
 
 <!-- ═══════════════════════════════ STORIES MAIN -->
@@ -1959,6 +1959,64 @@ footer {
     });
   }
 
+  function animateSchedItems(storyEl) {
+    var items = storyEl.querySelectorAll('.sched-item');
+    items.forEach(function (item) { item.classList.add('ai-hidden'); });
+    items.forEach(function (item, i) {
+      setTimeout(function () { item.classList.remove('ai-hidden'); }, 190 + i * 65);
+    });
+  }
+
+  function launchConfetti() {
+    var old = document.getElementById('confetti-canvas');
+    if (old) old.remove();
+    var canvas = document.createElement('canvas');
+    canvas.id = 'confetti-canvas';
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:800;';
+    document.body.appendChild(canvas);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var ctx = canvas.getContext('2d');
+    var cols = ['#f5c842','#ff6b9d','#a78bfa','#34d399','#60a5fa','#fb923c','#fff'];
+    var ps = [];
+    for (var i = 0; i < 160; i++) {
+      ps.push({
+        x: Math.random() * canvas.width, y: -25 - Math.random() * 130,
+        vx: (Math.random() - 0.5) * 3.8, vy: 1.4 + Math.random() * 3.5,
+        rot: Math.random() * 360, rs: (Math.random() - 0.5) * 6,
+        w: 7 + Math.random() * 7, h: 3 + Math.random() * 4.5,
+        color: cols[Math.floor(Math.random() * cols.length)], life: 0
+      });
+    }
+    var aid;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var alive = false;
+      ps.forEach(function (p) {
+        p.life++;
+        if (p.y < canvas.height + 30 && p.life < 260) {
+          alive = true;
+          p.x += p.vx; p.y += p.vy; p.rot += p.rs; p.vy += 0.04;
+          var op = Math.min(1, Math.min(p.life / 18, (260 - p.life) / 55));
+          ctx.save();
+          ctx.globalAlpha = op;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+      });
+      if (alive) { aid = requestAnimationFrame(draw); }
+      else if (canvas.parentNode) { canvas.parentNode.removeChild(canvas); }
+    }
+    draw();
+    setTimeout(function () {
+      if (aid) cancelAnimationFrame(aid);
+      if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+    }, 6500);
+  }
+
   function goTo(n) {
     if (n < 0 || n >= TOTAL) return;
     // Deactivate current
@@ -1972,6 +2030,18 @@ footer {
     var next = stories[current];
     next.classList.add('active');
     if (current > 0) animatePaths(next);
+    animateSchedItems(next);
+    if (current === 4) setTimeout(launchConfetti, 400);
+    // Preload adjacent hero images
+    [current - 1, current + 1].forEach(function (idx) {
+      if (idx >= 0 && idx < TOTAL) {
+        var bg = stories[idx].querySelector('.story-bg');
+        if (bg) {
+          var url = (bg.style.backgroundImage || '').replace(/url\(['"]?/, '').replace(/['"]?\)/, '');
+          if (url) { var img = new Image(); img.src = url; }
+        }
+      }
+    });
     // Update UI
     updateUI();
   }
@@ -2112,6 +2182,68 @@ footer {
         openLb(cards, idx);
       });
     });
+  });
+}());
+
+// ─── COUNTDOWN TIMER ─────────────────────────────────
+(function () {
+  'use strict';
+  // Salida: 21 julio 2026 a las 07:00 hora CDMX (UTC-6)
+  var TARGET = new Date('2026-07-21T07:00:00-06:00').getTime();
+  var elD = document.getElementById('cd-d');
+  var elH = document.getElementById('cd-h');
+  var elM = document.getElementById('cd-m');
+  var elS = document.getElementById('cd-s');
+  var ctr = document.getElementById('cover-countdown');
+  if (!elD || !elH || !elM || !elS) return;
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function tick() {
+    var diff = TARGET - Date.now();
+    if (diff <= 0) {
+      ctr.innerHTML = '<span style="font-family:var(--font-serif);font-size:0.82rem;font-style:italic;color:var(--gold);letter-spacing:0.04em;">¡El squad ya está en camino! 🚗✨</span>';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    elD.textContent = d;
+    elH.textContent = pad(h);
+    elM.textContent = pad(m);
+    elS.textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+}());
+
+// ─── PARALLAX HERO ───────────────────────────────────
+(function () {
+  'use strict';
+  var raf = null;
+  var tx = 0, ty = 0;
+
+  function applyParallax() {
+    raf = null;
+    var bg = document.querySelector('.story.active .story-bg');
+    if (bg) bg.style.translate = tx.toFixed(1) + 'px ' + ty.toFixed(1) + 'px';
+  }
+  function schedule() { if (!raf) raf = requestAnimationFrame(applyParallax); }
+
+  // Desktop: mouse parallax
+  document.addEventListener('mousemove', function (e) {
+    tx = (e.clientX / window.innerWidth  - 0.5) * 14;
+    ty = (e.clientY / window.innerHeight - 0.5) *  8;
+    schedule();
+  });
+
+  // Mobile: gyroscope parallax
+  window.addEventListener('deviceorientation', function (e) {
+    if (e.gamma == null || e.beta == null) return;
+    tx = Math.max(-6, Math.min(6, e.gamma / 3));
+    ty = Math.max(-5, Math.min(5, (e.beta - 45) / 5));
+    schedule();
   });
 }());
 </script>
