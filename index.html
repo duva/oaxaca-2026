@@ -115,13 +115,13 @@ body { font-family: 'Inter', sans-serif; background: #060812; color: #fff; overf
 /* ─── TRACK ──────────────────────────────────── */
 #track {
   display: flex;
-  width: 700%;
+  width: 800%;
   height: 100%;
   will-change: transform;
   transition: transform 0.44s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .story {
-  width: calc(100% / 7);
+  width: calc(100% / 8);
   height: 100%;
   position: relative;
   flex-shrink: 0;
@@ -516,6 +516,47 @@ body { font-family: 'Inter', sans-serif; background: #060812; color: #fff; overf
   font-size: 0.58rem; color: var(--text-xdim);
   letter-spacing: 0.08em;
 }
+
+/* ─── RECS SLIDE ─────────────────────────────── */
+.recs-category {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.85rem 0 0.45rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(245,200,66,0.16);
+}
+.recs-cat-icon { font-size: 0.85rem; }
+.recs-cat-label {
+  font-size: 0.46rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.recs-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.38rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.recs-item:last-child { border-bottom: none; }
+.recs-num {
+  font-size: 0.50rem;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 18px;
+  flex-shrink: 0;
+  padding-top: 3px;
+  letter-spacing: 0.04em;
+}
+.recs-text {
+  font-size: 0.71rem;
+  color: var(--text);
+  line-height: 1.50;
+}
+.recs-text strong { color: #fff; font-weight: 600; }
 
 /* ─── FOOTER ─────────────────────────────────── */
 footer {
@@ -1417,6 +1458,132 @@ footer {
       </div>
     </div>
 
+    <!-- ████ SLIDE 7 · RECOMENDACIONES ████ -->
+    <div class="story" id="s7">
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/33703911/pexels-photo-33703911.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 35%"></div>
+      <div class="story-panel">
+        <div class="day-tag">El código del squad</div>
+        <h2 class="day-title">20 reglas para vivirlo todo 🌿</h2>
+        <p class="day-route">Para que nadie se pierda el momento</p>
+
+        <!-- CATEGORÍA 1 -->
+        <div class="recs-category">
+          <span class="recs-cat-icon">🧴</span>
+          <span class="recs-cat-label">Cuerpo y protección</span>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">01</span>
+          <div class="recs-text">Bloqueador solar FPS 50+, obligatorio. Tienen playa, sierra, ruinas y carretera.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">02</span>
+          <div class="recs-text">Repelente en la mochila diaria, no en la maleta del carro.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">03</span>
+          <div class="recs-text">Hidratación constante, aunque no sientas sed. La sierra y la playa deshidratan rápido.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">04</span>
+          <div class="recs-text">Medicamento personal desde CDMX: antimareo, analgésico, antidiarreico. No confíes en farmacias de ruta.</div>
+        </div>
+
+        <!-- CATEGORÍA 2 -->
+        <div class="recs-category">
+          <span class="recs-cat-icon">⏰</span>
+          <span class="recs-cat-label">Tiempos y disciplina colectiva</span>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">05</span>
+          <div class="recs-text"><strong>La hora del grupo es sagrada.</strong> Listo en el carro, no apenas despertándote.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">06</span>
+          <div class="recs-text">Los traslados largos tienen ventana de luz natural. Si se pierde, cambia todo el día.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">07</span>
+          <div class="recs-text"><strong>Si el plan cambia, adáptate antes de quejarte.</strong> En 6 días con 11 personas algo no saldrá exacto. El que se ajusta rápido cuida la energía. El que hace drama la drena.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">08</span>
+          <div class="recs-text">Si vas tarde, avisa. No desaparezcas.</div>
+        </div>
+
+        <!-- CATEGORÍA 3 -->
+        <div class="recs-category">
+          <span class="recs-cat-icon">🏃</span>
+          <span class="recs-cat-label">Actitud activa</span>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">09</span>
+          <div class="recs-text"><strong>Cuando el plan dice "subir", se sube.</strong> Punta Cometa, Monte Albán, la cascada petrificada. Después no recordarás el cansancio.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">10</span>
+          <div class="recs-text">El momento icónico de cada destino no espera al que está dudando. El atardecer, los delfines, el último baño en Zipolite.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">11</span>
+          <div class="recs-text">Participa aunque no sea "tu tipo de actividad". La experiencia compartida vale más que el comfort individual.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">12</span>
+          <div class="recs-text">Descansa en el carro, no en los destinos. Cuando llegues a un lugar, estás presente.</div>
+        </div>
+
+        <!-- CATEGORÍA 4 -->
+        <div class="recs-category">
+          <span class="recs-cat-icon">💰</span>
+          <span class="recs-cat-label">Dinero y logística</span>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">13</span>
+          <div class="recs-text"><strong>Efectivo desde CDMX, no en ruta.</strong> Hierve el Agua, tortugas, lanchas y mercados muchas veces no aceptan tarjeta.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">14</span>
+          <div class="recs-text">Cada quien carga su mochila de día. Si el grupo se divide o el carro queda lejos, necesitas todo encima.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">15</span>
+          <div class="recs-text">Señal baja en sierra y en playa — descarga mapas offline antes del Día 2.</div>
+        </div>
+
+        <!-- CATEGORÍA 5 -->
+        <div class="recs-category">
+          <span class="recs-cat-icon">🤝</span>
+          <span class="recs-cat-label">Dinámica de grupo</span>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">16</span>
+          <div class="recs-text">Si puedes ayudar con algo, ofrécete sin que te pidan. En un grupo de 11 la iniciativa de uno descansa a todos.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">17</span>
+          <div class="recs-text"><strong>Cuando el ánimo de alguien baje, el grupo lo nota y lo sostiene.</strong> Un taco a tiempo, una broma, cambiar el tema. Esas cosas pequeñas mantienen la vibra en un viaje largo.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">18</span>
+          <div class="recs-text">Respeta el presupuesto de los demás sin hacer comentarios. El viaje funciona cuando nadie se siente presionado.</div>
+        </div>
+
+        <!-- CATEGORÍA 6 -->
+        <div class="recs-category">
+          <span class="recs-cat-icon">📸</span>
+          <span class="recs-cat-label">Recuerdos y cierre</span>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">19</span>
+          <div class="recs-text">Foto grupal en cada destino — alguien tiene que proponerla. Si nadie lo hace, propónla tú.</div>
+        </div>
+        <div class="recs-item">
+          <span class="recs-num">20</span>
+          <div class="recs-text"><strong>Este viaje funciona si todos ponen.</strong> El que avisa cuando está listo, el que ayuda a cargar, el que propone el brindis, el que cuida al que se marea. No hay un solo responsable — hay 11 personas que deciden hacer esto bien juntas. 💛</div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /#track -->
 
   <!-- Tap zones -->
@@ -1436,6 +1603,7 @@ footer {
     <div class="dot" data-i="4"></div>
     <div class="dot" data-i="5"></div>
     <div class="dot" data-i="6"></div>
+    <div class="dot" data-i="7"></div>
   </div>
 
 </div><!-- /#sw -->
@@ -1462,7 +1630,7 @@ footer {
 <script>
 (function () {
   'use strict';
-  const TOTAL = 7;
+  const TOTAL = 8;
   let current = 0;
   let touchX = 0, touchY = 0, dragging = false;
 
@@ -1480,7 +1648,7 @@ footer {
   const navPrev = document.getElementById('nav-prev');
   const navNext = document.getElementById('nav-next');
 
-  const LABELS = ['Cover','Día 1','Día 2','Día 3','Día 4 🎂','Día 5','Día 6'];
+  const LABELS = ['Cover','Día 1','Día 2','Día 3','Día 4 🎂','Día 5','Día 6','Recomendaciones'];
 
   function animatePaths(storyEl) {
     storyEl.querySelectorAll('.mm-path').forEach(function (p) {
@@ -1523,7 +1691,7 @@ footer {
     dayLabel.textContent = LABELS[current];
     slideCounter.textContent = (current + 1) + ' / ' + TOTAL;
     // Progress bar
-    sw.classList.toggle('on-day', current > 0);
+    sw.classList.toggle('on-day', current > 0 && current < 7);
     pbSegs.forEach(function (seg, i) {
       var day = i + 1;
       seg.classList.remove('done', 'active');
