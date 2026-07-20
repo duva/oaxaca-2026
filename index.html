@@ -537,45 +537,145 @@ footer {
 /* ─── PHOTO STRIP ───────────────────────────── */
 .photo-strip {
   display: flex;
-  gap: 7px;
+  gap: 8px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   margin-bottom: 0.9rem;
-  padding-bottom: 2px;
+  padding-bottom: 3px;
 }
 .strip-card {
   flex-shrink: 0;
-  width: 92px;
-  height: 64px;
+  width: 120px;
+  height: 82px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   scroll-snap-align: start;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.18s;
 }
+.strip-card:hover { border-color: rgba(245,200,66,0.40); }
+.strip-card:active { transform: scale(0.97); }
 .strip-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.32s ease;
 }
-.strip-card:active img { transform: scale(1.04); }
+.strip-card:hover img { transform: scale(1.06); }
 .strip-card-label {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 100%);
   font-size: 0.42rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.90);
-  padding: 10px 5px 4px;
+  color: rgba(255,255,255,0.92);
+  padding: 12px 5px 4px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.3;
+  pointer-events: none;
 }
 .bday .strip-card { border-color: rgba(245,200,66,0.15); }
+
+/* ─── LIGHTBOX ──────────────────────────────── */
+#lb {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.26s ease;
+}
+#lb.lb-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+#lb-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2,4,12,0.95);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+}
+#lb-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 3.8rem;
+}
+#lb-img {
+  width: 100%;
+  max-height: 66vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.70);
+  display: block;
+  transition: opacity 0.18s ease;
+}
+#lb-img.lb-fade { opacity: 0; }
+#lb-cap {
+  margin-top: 0.85rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.48);
+  text-align: center;
+}
+#lb-counter {
+  margin-top: 0.28rem;
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.20);
+  text-align: center;
+}
+#lb-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  z-index: 10;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.88);
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+#lb-close:hover { background: rgba(255,255,255,0.22); }
+#lb-prev, #lb-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.13);
+  color: rgba(255,255,255,0.88);
+  font-size: 1.45rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+#lb-prev:hover, #lb-next:hover { background: rgba(255,255,255,0.18); }
+#lb-prev { left: 0.55rem; }
+#lb-next { right: 0.55rem; }
+#lb-prev.lb-hidden, #lb-next.lb-hidden { opacity: 0.12; pointer-events: none; }
 
 /* ─── RESPONSIVE ─────────────────────────────── */
 @media (min-width: 480px) {
@@ -618,7 +718,7 @@ footer {
 
     <!-- ████ SLIDE 0 · COVER ████ -->
     <div class="story cover active" id="s0">
-      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 68%"></div>
+      <div class="story-bg" style="background-image:url('https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=1280');background-position:center 38%"></div>
       <div class="cover-content">
         <p class="cover-eyebrow">Squad Road Trip · Julio 2026</p>
         <h1 class="cover-title">Oaxaca<br>'26</h1>
@@ -662,19 +762,19 @@ footer {
         </div>
         <!-- FOTO STRIP D1 -->
         <div class="photo-strip">
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/7464537/pexels-photo-7464537.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Road trip">
             <img src="https://images.pexels.com/photos/7464537/pexels-photo-7464537.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Road trip</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/13630887/pexels-photo-13630887.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Centro histórico">
             <img src="https://images.pexels.com/photos/13630887/pexels-photo-13630887.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Centro histórico</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/33715073/pexels-photo-33715073.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Tradición viva">
             <img src="https://images.pexels.com/photos/33715073/pexels-photo-33715073.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Tradición viva</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/17246836/pexels-photo-17246836.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Vista aérea">
             <img src="https://images.pexels.com/photos/17246836/pexels-photo-17246836.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Vista aérea</div>
           </div>
@@ -774,19 +874,19 @@ footer {
         </div>
         <!-- FOTO STRIP D2 -->
         <div class="photo-strip">
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/33773803/pexels-photo-33773803.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Hierve el Agua">
             <img src="https://images.pexels.com/photos/33773803/pexels-photo-33773803.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Hierve el Agua</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/20994696/pexels-photo-20994696.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Cascada petrificada">
             <img src="https://images.pexels.com/photos/20994696/pexels-photo-20994696.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Cascada petrificada</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/19174994/pexels-photo-19174994.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="San José del Pacífico">
             <img src="https://images.pexels.com/photos/19174994/pexels-photo-19174994.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">San José del Pacífico</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Llegamos a Zipolite">
             <img src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Llegamos a Zipolite</div>
           </div>
@@ -902,19 +1002,19 @@ footer {
         </div>
         <!-- FOTO STRIP D3 -->
         <div class="photo-strip">
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/12285254/pexels-photo-12285254.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Cocodrilo">
             <img src="https://images.pexels.com/photos/12285254/pexels-photo-12285254.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Cocodrilo</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/29860697/pexels-photo-29860697.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="La Ventanilla">
             <img src="https://images.pexels.com/photos/29860697/pexels-photo-29860697.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">La Ventanilla</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/10615053/pexels-photo-10615053.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Costa oaxaqueña">
             <img src="https://images.pexels.com/photos/10615053/pexels-photo-10615053.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Costa oaxaqueña</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Punta Cometa">
             <img src="https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Punta Cometa</div>
           </div>
@@ -1013,19 +1113,19 @@ footer {
         </div>
         <!-- FOTO STRIP D4 -->
         <div class="photo-strip">
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/16194659/pexels-photo-16194659.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Delfines 🐬">
             <img src="https://images.pexels.com/photos/16194659/pexels-photo-16194659.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Delfines 🐬</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/3354346/pexels-photo-3354346.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Pacífico">
             <img src="https://images.pexels.com/photos/3354346/pexels-photo-3354346.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Pacífico</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/12084946/pexels-photo-12084946.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Tortugas 🐢">
             <img src="https://images.pexels.com/photos/12084946/pexels-photo-12084946.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Tortugas 🐢</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Cumple en playa 🎂">
             <img src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Cumple en playa 🎂</div>
           </div>
@@ -1119,19 +1219,19 @@ footer {
         </div>
         <!-- FOTO STRIP D5 -->
         <div class="photo-strip">
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Último amanecer">
             <img src="https://images.pexels.com/photos/35919338/pexels-photo-35919338.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Último amanecer</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/19174994/pexels-photo-19174994.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Carretera sierra">
             <img src="https://images.pexels.com/photos/19174994/pexels-photo-19174994.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Carretera sierra</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/37908041/pexels-photo-37908041.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="De vuelta a Oaxaca">
             <img src="https://images.pexels.com/photos/37908041/pexels-photo-37908041.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">De vuelta a Oaxaca</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/33715073/pexels-photo-33715073.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Noche de mezcal">
             <img src="https://images.pexels.com/photos/33715073/pexels-photo-33715073.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Noche de mezcal</div>
           </div>
@@ -1233,19 +1333,19 @@ footer {
         </div>
         <!-- FOTO STRIP D6 -->
         <div class="photo-strip">
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/17002196/pexels-photo-17002196.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Monte Albán">
             <img src="https://images.pexels.com/photos/17002196/pexels-photo-17002196.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Monte Albán</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/34032029/pexels-photo-34032029.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Puebla">
             <img src="https://images.pexels.com/photos/34032029/pexels-photo-34032029.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Puebla</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/19683967/pexels-photo-19683967.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Calles coloniales">
             <img src="https://images.pexels.com/photos/19683967/pexels-photo-19683967.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Calles coloniales</div>
           </div>
-          <div class="strip-card">
+          <div class="strip-card" data-src="https://images.pexels.com/photos/30338264/pexels-photo-30338264.jpeg?auto=compress&cs=tinysrgb&w=1280" data-label="Regreso a CDMX">
             <img src="https://images.pexels.com/photos/30338264/pexels-photo-30338264.jpeg?auto=compress&cs=tinysrgb&w=200" loading="lazy" alt="">
             <div class="strip-card-label">Regreso a CDMX</div>
           </div>
@@ -1345,6 +1445,19 @@ footer {
   <div class="footer-title">Oaxaca '26</div>
   <div class="footer-sub">21 – 26 Julio 2026 · 11 Personas · 1 Squad</div>
 </footer>
+
+<!-- ═══════════════════════════════════ LIGHTBOX -->
+<div id="lb" role="dialog" aria-modal="true">
+  <div id="lb-backdrop"></div>
+  <button id="lb-close" aria-label="Cerrar">✕</button>
+  <button id="lb-prev" aria-label="Anterior">‹</button>
+  <div id="lb-body">
+    <img id="lb-img" src="" alt="">
+    <div id="lb-cap"></div>
+    <div id="lb-counter"></div>
+  </div>
+  <button id="lb-next" aria-label="Siguiente">›</button>
+</div>
 
 <script>
 (function () {
@@ -1451,12 +1564,95 @@ footer {
 
   // Keyboard
   document.addEventListener('keydown', function (e) {
+    if (document.getElementById('lb').classList.contains('lb-open')) return;
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
   });
 
   // Init
   updateUI();
+}());
+
+// ─── LIGHTBOX ────────────────────────────────────────
+(function () {
+  'use strict';
+  var lb      = document.getElementById('lb');
+  var lbImg   = document.getElementById('lb-img');
+  var lbCap   = document.getElementById('lb-cap');
+  var lbCtr   = document.getElementById('lb-counter');
+  var lbClose = document.getElementById('lb-close');
+  var lbPrev  = document.getElementById('lb-prev');
+  var lbNext  = document.getElementById('lb-next');
+  var lbBd    = document.getElementById('lb-backdrop');
+  var lbCards = [], lbIdx = 0, lbIsOpen = false;
+
+  function openLb(cards, idx) {
+    lbCards = cards; lbIdx = idx; lbIsOpen = true;
+    lbRender();
+    lb.classList.add('lb-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('lb-open');
+    lbIsOpen = false;
+    document.body.style.overflow = '';
+    setTimeout(function () { lbImg.src = ''; }, 280);
+  }
+  function lbRender() {
+    var card = lbCards[lbIdx];
+    lbImg.classList.add('lb-fade');
+    var tmp = new Image();
+    tmp.onload = function () {
+      lbImg.src = tmp.src;
+      lbImg.classList.remove('lb-fade');
+    };
+    tmp.src = card.dataset.src;
+    lbCap.textContent = card.dataset.label || '';
+    lbCtr.textContent = (lbIdx + 1) + ' / ' + lbCards.length;
+    lbPrev.classList.toggle('lb-hidden', lbIdx === 0);
+    lbNext.classList.toggle('lb-hidden', lbIdx === lbCards.length - 1);
+  }
+
+  lbClose.addEventListener('click', closeLb);
+  lbBd.addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', function () {
+    if (lbIdx > 0) { lbIdx--; lbRender(); }
+  });
+  lbNext.addEventListener('click', function () {
+    if (lbIdx < lbCards.length - 1) { lbIdx++; lbRender(); }
+  });
+
+  // Swipe en lightbox
+  var lbTX = 0;
+  lb.addEventListener('touchstart', function (e) {
+    lbTX = e.touches[0].clientX;
+  }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    var diff = lbTX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 42) {
+      if (diff > 0 && lbIdx < lbCards.length - 1) { lbIdx++; lbRender(); }
+      else if (diff < 0 && lbIdx > 0) { lbIdx--; lbRender(); }
+    }
+  }, { passive: true });
+
+  // Keyboard lightbox
+  document.addEventListener('keydown', function (e) {
+    if (!lbIsOpen) return;
+    if (e.key === 'Escape') { closeLb(); }
+    if (e.key === 'ArrowLeft' && lbIdx > 0) { lbIdx--; lbRender(); }
+    if (e.key === 'ArrowRight' && lbIdx < lbCards.length - 1) { lbIdx++; lbRender(); }
+  });
+
+  // Conectar cards a lightbox
+  document.querySelectorAll('.photo-strip').forEach(function (strip) {
+    var cards = Array.from(strip.querySelectorAll('.strip-card[data-src]'));
+    cards.forEach(function (card, idx) {
+      card.addEventListener('click', function (e) {
+        e.stopPropagation();
+        openLb(cards, idx);
+      });
+    });
+  });
 }());
 </script>
 </body>
