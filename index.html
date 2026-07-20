@@ -135,9 +135,11 @@ body { font-family: 'Inter', sans-serif; background: #060812; color: #fff; overf
   background-size: cover;
   background-position: center;
   transform: scale(1.05);
-  transition: transform 0.7s ease, opacity 0.30s ease;
+  translate: 0px 0px;
+  transition: transform 0.7s ease, translate 0.09s linear;
+  will-change: transform, translate;
 }
-.story.active .story-bg { transform: scale(1); }
+.story.active .story-bg { transform: scale(1.02); }
 .strip-card.strip-active {
   border-color: var(--gold) !important;
   box-shadow: 0 0 0 2px rgba(245,200,66,0.22);
@@ -238,6 +240,30 @@ body { font-family: 'Inter', sans-serif; background: #060812; color: #fff; overf
   -webkit-tap-highlight-color: transparent;
 }
 .cover-cta:hover { background: rgba(245,200,66,0.20); }
+
+/* ─── COVER COUNTDOWN ─────────────────────────── */
+.cover-countdown {
+  display: flex; align-items: center; justify-content: center; gap: 0.28rem;
+  margin-bottom: 1.1rem;
+  background: rgba(245,200,66,0.07);
+  border: 1px solid rgba(245,200,66,0.20);
+  border-radius: 14px; padding: 0.6rem 1rem;
+}
+.cd-unit { display: flex; flex-direction: column; align-items: center; min-width: 2.4rem; }
+.cd-num {
+  font-family: var(--font-serif); font-size: 1.50rem; font-weight: 600;
+  color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums;
+}
+.cd-lbl {
+  font-size: 0.40rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(255,255,255,0.32); margin-top: 2px;
+}
+.cd-sep { font-size: 1.1rem; color: rgba(245,200,66,0.32); margin-bottom: 0.7rem; font-weight: 700; }
+
+/* ─── SCHED ITEM ENTRANCE ANIM ──────────────────── */
+.sched-item { transition: opacity 0.32s ease, transform 0.32s ease; }
+.sched-item.ai-hidden { opacity: 0; transform: translateY(9px); }
+
 @keyframes pulseCta {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.04); }
@@ -723,6 +749,26 @@ footer {
 #lb-next { right: 0.5rem; }
 #lb-prev.lb-hidden, #lb-next.lb-hidden { opacity: 0.12; pointer-events: none; }
 
+/* ─── MAP LINK ────────────────────────────────── */
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(245,200,66,0.32);
+  background: rgba(245,200,66,0.07);
+  border-radius: 6px;
+  padding: 4px 9px;
+  margin-top: 5px;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.map-link:hover { background: rgba(245,200,66,0.16); }
+
 /* ─── FIXED / FLEX TIME INDICATORS ──────────── */
 .fixed-tag {
   display: inline-block;
@@ -795,6 +841,15 @@ footer {
           <span class="cover-pill">🎂 Cumple Liss</span>
         </div>
         <div class="cover-dates">Mar 21 — Dom 26 Julio 2026</div>
+        <div class="cover-countdown" id="cover-countdown">
+          <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">días</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">hrs</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">min</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">seg</span></div>
+        </div>
         <button class="cover-cta" id="cta-btn">Explorar el viaje &nbsp;›</button>
       </div>
     </div>
@@ -876,14 +931,15 @@ footer {
           </div>
         </div>
         <div class="day-tag">Día 1 · Martes 21 Julio</div>
-        <h2 class="day-title">El squad llega 🌵</h2>
+        <h2 class="day-title">Café a las 6, Oaxaca al mediodía ☕🌵</h2>
         <p class="day-route">Ciudad de México → Oaxaca Ciudad</p>
         <div class="sched">
           <div class="sched-item">
             <span class="sched-time">06:00 <span class="fixed-tag">FIJO</span></span>
             <span class="sched-icon">☕</span>
-            <div><div class="sched-text">Salida desde Starbucks (Caseta San Marcos) — café, playlist y carretera</div>
-            <div class="sched-note">⚡ Salida puntual — ~5h de viaje más casetas</div></div>
+            <div><div class="sched-text">Starbucks (Caseta San Marcos) — 6:00 AM en punto. El squad no espera.</div>
+            <div class="sched-note">⚡ Listos en el estacionamiento, no apenas llegando · ~5h de viaje más casetas</div>
+            <a href="https://maps.app.goo.gl/6dySYKCrVrHPDsZA7" target="_blank" class="map-link">📍 Ver ubicación en Maps</a></div>
           </div>
           <div class="sched-item">
             <span class="sched-time flex">~11:00</span>
@@ -1020,7 +1076,7 @@ footer {
           </div>
         </div>
         <div class="day-tag">Día 2 · Miércoles 22 Julio</div>
-        <h2 class="day-title">Sierra, pozas y playa 🌊</h2>
+        <h2 class="day-title">Tres paisajes en un día: pozas, sierra y mar 🏔️🌊</h2>
         <p class="day-route">Oaxaca → Hierve el Agua → San José del Pacífico → Zipolite</p>
         <div class="sched">
           <div class="sched-item">
@@ -1170,7 +1226,7 @@ footer {
           </div>
         </div>
         <div class="day-tag">Día 3 · Jueves 23 Julio</div>
-        <h2 class="day-title">Costa total 🐊🌅</h2>
+        <h2 class="day-title">De la laguna al atardecer más al sur del país 🐊🌅</h2>
         <p class="day-route">Airbnb → La Ventanilla → Zipolite → Mazunte → Punta Cometa</p>
         <div class="sched">
           <div class="sched-item">
@@ -1331,7 +1387,7 @@ footer {
           </div>
         </div>
         <div class="day-tag">Día 4 · Viernes 24 Julio · ¡Cumpleaños!</div>
-        <h2 class="day-title">Feliz cumple, Liss 👑🎂</h2>
+        <h2 class="day-title">Delfines al alba, tortugas al ocaso y Liss en el centro 🐬🎂</h2>
         <p class="day-route">Delfines al amanecer — Playa libre — Tortugas — Cena + Fiesta en casa</p>
         <div class="sched">
           <div class="sched-item">
@@ -1468,7 +1524,7 @@ footer {
           </div>
         </div>
         <div class="day-tag">Día 5 · Sábado 25 Julio</div>
-        <h2 class="day-title">De playa a mezcal 🥃</h2>
+        <h2 class="day-title">El mar nos despide y Oaxaca nos espera 🌊🥃</h2>
         <p class="day-route">Zipolite → Oaxaca Ciudad</p>
         <div class="sched">
           <div class="sched-item">
@@ -1622,7 +1678,7 @@ footer {
           </div>
         </div>
         <div class="day-tag">Día 6 · Domingo 26 Julio</div>
-        <h2 class="day-title">El cierre épico 🏛️🏁</h2>
+        <h2 class="day-title">Ruinas, tacos árabes y el squad de vuelta en casa 🏛️🏁</h2>
         <p class="day-route">Oaxaca → Monte Albán → Puebla → Ciudad de México</p>
         <div class="sched">
           <div class="sched-item">
