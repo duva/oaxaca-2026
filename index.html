@@ -319,13 +319,16 @@ body { font-family: 'DM Sans', sans-serif; background: #060812; color: #fff; ove
   background: var(--glass-gold);
   border-top-color: rgba(245,200,66,0.18);
 }
+/* D5/D6 — más espacio al hero para que el elemento principal quede visible sobre el panel */
+#s5 .story-panel { max-height: 48vh; }
+#s6 .story-panel { max-height: 48vh; }
 
 /* ─── MINI-MAP ───────────────────────────────── */
 .mini-map { width: 100%; margin-bottom: 0.75rem; border-radius: 10px; overflow: hidden; }
 .mini-map svg { width: 100%; height: auto; display: block; }
 .mm-path {
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
 }
 
 /* ─── DAY HEADER ─────────────────────────────── */
@@ -893,41 +896,34 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D1 -->
         <div class="mini-map">
-          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 82" xmlns="http://www.w3.org/2000/svg">
             <!-- CDMX zona urbana -->
-            <rect width="320" height="120" fill="#04080e"/>
-            <rect x="0" y="0" width="92" height="120" fill="#080f1e"/>
-            <line x1="22" y1="0" x2="22" y2="120" stroke="rgba(45,68,130,0.30)" stroke-width="0.6"/>
-            <line x1="46" y1="0" x2="46" y2="120" stroke="rgba(45,68,130,0.22)" stroke-width="0.6"/>
-            <line x1="70" y1="0" x2="70" y2="120" stroke="rgba(45,68,130,0.16)" stroke-width="0.5"/>
-            <line x1="0" y1="26" x2="92" y2="26" stroke="rgba(45,68,130,0.20)" stroke-width="0.5"/>
-            <line x1="0" y1="52" x2="92" y2="52" stroke="rgba(45,68,130,0.16)" stroke-width="0.5"/>
-            <line x1="0" y1="78" x2="92" y2="78" stroke="rgba(45,68,130,0.12)" stroke-width="0.4"/>
-            <line x1="0" y1="104" x2="92" y2="104" stroke="rgba(45,68,130,0.10)" stroke-width="0.4"/>
-            <circle cx="38" cy="88" r="30" fill="rgba(50,72,200,0.09)"/>
-            <!-- Sierra Madre – silueta de montañas planas -->
-            <polygon points="110,120 130,90 148,68 162,52 178,42 192,38 208,44 222,58 240,72 258,84 278,96 300,110 320,120" fill="#0a1606"/>
-            <polygon points="145,120 162,90 176,66 190,50 204,44 218,56 232,72 248,85 268,100 292,114 320,120" fill="#071005"/>
-            <!-- Contorno de nivel -->
-            <path d="M148,102 Q172,74 192,56 Q212,44 236,55 Q252,65 270,80" stroke="rgba(28,58,22,0.38)" stroke-width="0.8" fill="none"/>
-            <path d="M142,110 Q168,82 188,66 Q208,52 232,62 Q250,72 268,88" stroke="rgba(28,58,22,0.22)" stroke-width="0.6" fill="none"/>
+            <rect width="320" height="82" fill="#070d18"/>
+            <rect x="0" y="0" width="88" height="82" fill="#0e1c35"/>
+            <line x1="20" y1="0" x2="20" y2="82" stroke="rgba(70,110,200,0.35)" stroke-width="0.7"/>
+            <line x1="40" y1="0" x2="40" y2="82" stroke="rgba(70,110,200,0.25)" stroke-width="0.6"/>
+            <line x1="62" y1="0" x2="62" y2="82" stroke="rgba(70,110,200,0.18)" stroke-width="0.5"/>
+            <line x1="0" y1="22" x2="88" y2="22" stroke="rgba(70,110,200,0.26)" stroke-width="0.6"/>
+            <line x1="0" y1="44" x2="88" y2="44" stroke="rgba(70,110,200,0.18)" stroke-width="0.5"/>
+            <line x1="0" y1="66" x2="88" y2="66" stroke="rgba(70,110,200,0.12)" stroke-width="0.4"/>
+            <!-- Sierra Madre -->
+            <rect x="88" y="0" width="148" height="82" fill="#12251a"/>
+            <polygon points="90,82 108,58 122,42 138,32 152,26 165,30 178,42 192,56 210,68 236,82" fill="#0c1e14"/>
+            <path d="M108,66 Q130,48 150,38 Q168,32 188,40 Q204,48 218,60" stroke="rgba(38,90,50,0.50)" stroke-width="0.9" fill="none"/>
             <!-- Oaxaca valle -->
-            <rect x="275" y="0" width="45" height="120" fill="#080e04"/>
-            <circle cx="295" cy="80" r="22" fill="rgba(50,72,200,0.08)"/>
-            <!-- Autopista de fondo -->
-            <path d="M8,88 Q55,86 102,76 Q148,66 192,55 Q230,50 260,60 Q278,66 295,80" stroke="rgba(55,82,150,0.18)" stroke-width="1.2" fill="none" stroke-dasharray="8,5"/>
+            <rect x="236" y="0" width="84" height="82" fill="#1c150a"/>
             <!-- Ruta -->
-            <path class="mm-path" data-dur="4200" d="M32,88 C70,86 100,74 135,64 C165,55 195,50 228,56 C258,62 278,74 295,80" stroke="#f5c842" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.82"/>
-            <circle cx="32" cy="88" r="5" fill="#f5c842"/>
-            <circle cx="295" cy="80" r="5" fill="rgba(255,255,255,0.80)"/>
-            <text x="38" y="110" font-size="8.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="DM Mono,monospace" letter-spacing="0.06em">CDMX</text>
-            <text x="185" y="35" font-size="7" fill="rgba(255,255,255,0.22)" text-anchor="middle" font-family="DM Mono,monospace" letter-spacing="0.05em">SIERRA</text>
-            <text x="295" y="100" font-size="8.5" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="DM Mono,monospace" letter-spacing="0.06em">OAXACA</text>
+            <path class="mm-path" data-dur="4200" d="M22,60 C55,58 85,48 118,38 C148,30 180,28 210,34 C238,40 265,52 295,56" stroke="#f5c842" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="22" cy="60" r="5.5" fill="#f5c842"/>
+            <circle cx="295" cy="56" r="5.5" fill="rgba(255,255,255,0.90)"/>
+            <text x="44" y="76" font-size="10" fill="rgba(255,255,255,0.78)" text-anchor="middle" font-family="DM Mono,monospace">CDMX</text>
+            <text x="163" y="20" font-size="8" fill="rgba(255,255,255,0.48)" text-anchor="middle" font-family="DM Mono,monospace">SIERRA</text>
+            <text x="268" y="76" font-size="10" fill="rgba(255,255,255,0.78)" text-anchor="middle" font-family="DM Mono,monospace">OAXACA</text>
             <!-- Carrito -->
             <g>
-              <circle r="9" fill="rgba(245,200,66,0.13)">
-                <animate attributeName="r" values="8;13;8" dur="2.2s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.11;0.25;0.11" dur="2.2s" repeatCount="indefinite"/>
+              <circle r="8" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="7;12;7" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.28;0.14" dur="2.2s" repeatCount="indefinite"/>
               </circle>
               <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
               <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#080c1e"/>
@@ -936,7 +932,7 @@ footer {
               <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <animateMotion dur="4.2s" repeatCount="indefinite" calcMode="linear" rotate="auto"
-                path="M32,88 C70,86 100,74 135,64 C165,55 195,50 228,56 C258,62 278,74 295,80"/>
+                path="M22,60 C55,58 85,48 118,38 C148,30 180,28 210,34 C238,40 265,52 295,56"/>
             </g>
           </svg>
         </div>
@@ -1031,42 +1027,35 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D2 -->
         <div class="mini-map">
-          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
-            <!-- base -->
-            <rect width="320" height="120" fill="#04080e"/>
+          <svg viewBox="0 0 320 82" xmlns="http://www.w3.org/2000/svg">
             <!-- Oaxaca valle izquierda -->
-            <rect x="0" y="0" width="72" height="120" fill="#080e04"/>
-            <circle cx="32" cy="88" r="24" fill="rgba(50,72,200,0.07)"/>
-            <!-- Zona cañón / HeA (aridez, roca) -->
-            <rect x="72" y="0" width="85" height="120" fill="#0c0e06"/>
-            <path d="M75,40 Q95,36 115,40 Q135,44 155,40" stroke="rgba(85,62,18,0.30)" stroke-width="0.8" fill="none"/>
-            <path d="M75,56 Q95,52 115,56 Q135,60 155,56" stroke="rgba(85,62,18,0.22)" stroke-width="0.6" fill="none"/>
-            <path d="M75,72 Q97,68 120,72 Q142,76 155,72" stroke="rgba(85,62,18,0.16)" stroke-width="0.5" fill="none"/>
-            <!-- Sierra escalando – polígono montaña -->
-            <polygon points="152,120 168,100 182,80 194,60 206,42 218,28 228,18 242,12 258,10 275,12 292,18 308,26 320,32 320,120" fill="#091508"/>
-            <polygon points="178,120 190,96 202,74 214,54 226,38 238,26 250,18 265,12 280,12 295,18 308,26 320,32 320,120" fill="#071005"/>
-            <!-- niebla SJdP arriba derecha -->
-            <rect x="220" y="0" width="100" height="24" fill="#0a1828" opacity="0.55"/>
-            <path d="M222,8 Q248,5 272,8 Q295,11 318,8" stroke="rgba(80,115,155,0.35)" stroke-width="1" fill="none"/>
-            <path d="M218,16 Q244,13 268,16 Q292,19 315,16" stroke="rgba(80,115,155,0.22)" stroke-width="0.8" fill="none"/>
-            <!-- Curvas de nivel sierra -->
-            <path d="M165,102 Q182,78 198,58 Q215,42 232,30 Q250,22 272,22" stroke="rgba(25,55,20,0.40)" stroke-width="0.8" fill="none"/>
-            <path d="M160,110 Q178,86 194,68 Q212,52 228,38 Q246,28 268,28" stroke="rgba(25,55,20,0.24)" stroke-width="0.6" fill="none"/>
-            <!-- Carretera fondo -->
-            <path d="M8,88 Q50,84 85,72 Q108,64 122,62 Q132,66 145,60 Q168,48 200,32 Q230,18 268,14 Q282,12 295,14" stroke="rgba(55,82,150,0.16)" stroke-width="1.2" fill="none" stroke-dasharray="8,5"/>
+            <rect width="320" height="82" fill="#070d18"/>
+            <rect x="0" y="0" width="65" height="82" fill="#1c150a"/>
+            <!-- Zona cañón / HeA -->
+            <rect x="65" y="0" width="85" height="82" fill="#1a0e06"/>
+            <path d="M68,25 Q90,21 112,25 Q132,29 148,25" stroke="rgba(110,72,20,0.40)" stroke-width="0.9" fill="none"/>
+            <path d="M68,40 Q90,36 112,40 Q132,44 148,40" stroke="rgba(110,72,20,0.28)" stroke-width="0.7" fill="none"/>
+            <path d="M68,55 Q90,51 112,55 Q132,59 148,55" stroke="rgba(110,72,20,0.18)" stroke-width="0.6" fill="none"/>
+            <!-- Sierra escalando -->
+            <rect x="150" y="0" width="170" height="82" fill="#12251a"/>
+            <polygon points="152,82 165,63 178,48 190,34 202,22 215,14 228,10 244,12 260,18 278,28 295,40 312,53 320,60 320,82" fill="#0c1e14"/>
+            <path d="M165,70 Q182,53 198,40 Q215,28 232,22 Q250,18 268,22" stroke="rgba(38,90,50,0.48)" stroke-width="0.9" fill="none"/>
+            <!-- Niebla SJdP -->
+            <rect x="218" y="0" width="102" height="18" fill="#0c1e2c" opacity="0.70"/>
+            <path d="M222,6 Q248,3 272,6 Q295,9 318,6" stroke="rgba(80,130,175,0.45)" stroke-width="1.1" fill="none"/>
             <!-- Ruta -->
-            <path class="mm-path" data-dur="5500" d="M32,88 C58,85 78,74 98,62 C112,56 120,64 138,58 C158,46 185,30 215,20 C240,14 268,12 295,14" stroke="#f5c842" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.82"/>
-            <circle cx="32" cy="88" r="5" fill="#f5c842"/>
-            <circle cx="122" cy="62" r="4" fill="rgba(255,255,255,0.58)"/>
-            <circle cx="295" cy="14" r="5" fill="rgba(255,255,255,0.80)"/>
-            <text x="32" y="108" font-size="8" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="DM Mono,monospace">OAXACA</text>
-            <text x="118" y="75" font-size="7" fill="rgba(255,255,255,0.32)" text-anchor="middle" font-family="DM Mono,monospace">HeA</text>
-            <text x="290" y="28" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="end" font-family="DM Mono,monospace">SJdP</text>
+            <path class="mm-path" data-dur="5500" d="M22,60 C48,58 68,48 90,38 C108,32 118,40 132,34 C152,24 178,16 210,10 C238,6 265,5 295,6" stroke="#f5c842" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="22" cy="60" r="5.5" fill="#f5c842"/>
+            <circle cx="118" cy="40" r="4.5" fill="rgba(255,255,255,0.72)"/>
+            <circle cx="295" cy="6" r="5.5" fill="rgba(255,255,255,0.90)"/>
+            <text x="32" y="76" font-size="10" fill="rgba(255,255,255,0.78)" text-anchor="middle" font-family="DM Mono,monospace">OAXACA</text>
+            <text x="112" y="54" font-size="9" fill="rgba(255,255,255,0.68)" text-anchor="middle" font-family="DM Mono,monospace">HeA</text>
+            <text x="292" y="24" font-size="9.5" fill="rgba(255,255,255,0.75)" text-anchor="end" font-family="DM Mono,monospace">SJdP</text>
             <!-- Carrito -->
             <g>
-              <circle r="9" fill="rgba(245,200,66,0.13)">
-                <animate attributeName="r" values="8;13;8" dur="2.2s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.11;0.25;0.11" dur="2.2s" repeatCount="indefinite"/>
+              <circle r="8" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="7;12;7" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.28;0.14" dur="2.2s" repeatCount="indefinite"/>
               </circle>
               <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
               <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#080c1e"/>
@@ -1075,7 +1064,7 @@ footer {
               <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <animateMotion dur="5.5s" repeatCount="indefinite" calcMode="linear" rotate="auto"
-                path="M32,88 C58,85 78,74 98,62 C112,56 120,64 138,58 C158,46 185,30 215,20 C240,14 268,12 295,14"/>
+                path="M22,60 C48,58 68,48 90,38 C108,32 118,40 132,34 C152,24 178,16 210,10 C238,6 265,5 295,6"/>
             </g>
           </svg>
         </div>
@@ -1177,41 +1166,39 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D3 -->
         <div class="mini-map">
-          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
-            <!-- Descenso épico: SJdP arriba-izq → Zipolite abajo-der -->
-            <rect width="320" height="120" fill="#04080e"/>
-            <!-- Cielo / atmósfera SJdP -->
-            <rect x="0" y="0" width="320" height="18" fill="#050c14"/>
-            <path d="M5,6 Q30,3 58,6 Q86,9 114,6" stroke="rgba(80,115,155,0.35)" stroke-width="1" fill="none"/>
-            <path d="M5,13 Q35,10 70,13 Q105,16 130,13" stroke="rgba(80,115,155,0.20)" stroke-width="0.7" fill="none"/>
-            <!-- Masa de sierra (cuadrante sup-izq) -->
-            <polygon points="0,0 0,120 118,120 142,92 158,70 168,54 175,40 170,28 155,18 128,12 92,10 55,8 22,8 0,12" fill="#091508"/>
-            <polygon points="0,0 0,120 92,120 115,96 136,74 150,56 156,42 148,30 130,20 102,14 70,12 38,10 10,10" fill="#071005"/>
-            <!-- Bosque de transición (centro) -->
-            <polygon points="128,120 155,94 172,72 182,54 188,42 200,48 218,64 235,80 255,96 278,110 310,120" fill="#0b1408"/>
-            <!-- Pacifico y costa (cuadrante inf-der) -->
-            <polygon points="232,120 250,106 268,96 285,88 298,85 312,86 320,88 320,120" fill="#051528"/>
-            <rect x="288" y="78" width="32" height="42" fill="#041020"/>
-            <path d="M270,88 Q285,85 298,88 Q310,91 320,88" stroke="rgba(28,100,178,0.40)" stroke-width="1.1" fill="none"/>
-            <path d="M264,98 Q280,95 298,98 Q310,101 320,98" stroke="rgba(28,100,178,0.28)" stroke-width="0.9" fill="none"/>
-            <path d="M260,108 Q278,105 298,108 Q312,111 320,108" stroke="rgba(28,100,178,0.18)" stroke-width="0.7" fill="none"/>
-            <!-- Curvas de nivel izquierda -->
-            <path d="M12,55 Q38,44 60,35 Q80,28 95,25" stroke="rgba(25,55,20,0.38)" stroke-width="0.8" fill="none"/>
-            <path d="M10,70 Q38,58 62,48 Q82,40 98,36" stroke="rgba(25,55,20,0.24)" stroke-width="0.6" fill="none"/>
-            <path d="M8,84 Q38,72 62,62 Q84,54 100,50" stroke="rgba(25,55,20,0.16)" stroke-width="0.5" fill="none"/>
-            <!-- Ruta – descenso diagonal -->
-            <path class="mm-path" data-dur="4800" d="M24,14 C55,20 88,32 118,48 C148,64 175,76 205,84 C232,90 260,92 295,90" stroke="#f5c842" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.82"/>
-            <circle cx="24" cy="14" r="5" fill="#f5c842"/>
-            <circle cx="295" cy="90" r="5" fill="rgba(255,255,255,0.80)"/>
-            <text x="24" y="9" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="DM Mono,monospace">SJdP</text>
-            <text x="295" y="108" font-size="8" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="DM Mono,monospace">ZIPOLITE</text>
-            <text x="14" y="38" font-size="6.5" fill="rgba(255,255,255,0.20)" text-anchor="start" font-family="DM Mono,monospace">2,400m</text>
-            <text x="278" y="76" font-size="6.5" fill="rgba(255,255,255,0.20)" text-anchor="end" font-family="DM Mono,monospace">0m</text>
+          <svg viewBox="0 0 320 82" xmlns="http://www.w3.org/2000/svg">
+            <!-- SJdP arriba-izq → Zipolite abajo-der -->
+            <rect width="320" height="82" fill="#070d18"/>
+            <!-- Sierra sup-izq -->
+            <polygon points="0,0 0,82 112,82 138,62 158,46 168,32 172,18 160,8 135,4 100,3 62,4 28,6 0,10" fill="#12251a"/>
+            <polygon points="0,0 0,82 88,82 112,62 132,44 146,30 150,18 140,8 115,4 82,3 48,4 18,6 0,10" fill="#0c1e14"/>
+            <!-- Niebla SJdP -->
+            <rect x="0" y="0" width="175" height="16" fill="#0c1e2c" opacity="0.60"/>
+            <path d="M5,5 Q38,2 72,5 Q108,8 138,5" stroke="rgba(80,130,175,0.42)" stroke-width="1" fill="none"/>
+            <!-- Transición / bosque -->
+            <polygon points="100,82 132,64 150,50 160,38 170,44 185,56 205,68 228,76 255,80 285,82" fill="#0e2018"/>
+            <!-- Pacífico inf-der -->
+            <polygon points="240,82 258,74 275,66 292,60 305,58 318,60 320,62 320,82" fill="#0a2040"/>
+            <path d="M258,65 Q278,62 298,65 Q312,68 320,65" stroke="rgba(35,120,210,0.42)" stroke-width="1.1" fill="none"/>
+            <path d="M252,73 Q272,70 295,73 Q310,76 320,73" stroke="rgba(35,120,210,0.26)" stroke-width="0.9" fill="none"/>
+            <!-- Costa -->
+            <path d="M198,70 Q222,66 250,68 Q278,70 295,66" stroke="rgba(210,185,90,0.38)" stroke-width="1.6" fill="none"/>
+            <!-- Curvas de nivel -->
+            <path d="M12,42 Q35,32 58,24 Q78,18 92,15" stroke="rgba(38,90,50,0.46)" stroke-width="0.8" fill="none"/>
+            <path d="M10,56 Q35,46 58,37 Q80,30 95,26" stroke="rgba(38,90,50,0.28)" stroke-width="0.6" fill="none"/>
+            <!-- Ruta descenso diagonal -->
+            <path class="mm-path" data-dur="4800" d="M22,8 C52,14 85,26 115,40 C145,56 172,66 202,72 C228,76 260,75 295,72" stroke="#f5c842" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="22" cy="8" r="5.5" fill="#f5c842"/>
+            <circle cx="295" cy="72" r="5.5" fill="rgba(255,255,255,0.90)"/>
+            <text x="22" y="5" font-size="9.5" fill="rgba(255,255,255,0.78)" text-anchor="middle" font-family="DM Mono,monospace">SJdP</text>
+            <text x="292" y="80" font-size="10" fill="rgba(255,255,255,0.78)" text-anchor="end" font-family="DM Mono,monospace">ZIPOLITE</text>
+            <text x="15" y="32" font-size="7.5" fill="rgba(255,255,255,0.36)" text-anchor="start" font-family="DM Mono,monospace">2,400m</text>
+            <text x="285" y="55" font-size="7.5" fill="rgba(255,255,255,0.36)" text-anchor="end" font-family="DM Mono,monospace">0m</text>
             <!-- Carrito -->
             <g>
-              <circle r="9" fill="rgba(245,200,66,0.13)">
-                <animate attributeName="r" values="8;13;8" dur="2.2s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.11;0.25;0.11" dur="2.2s" repeatCount="indefinite"/>
+              <circle r="8" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="7;12;7" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.28;0.14" dur="2.2s" repeatCount="indefinite"/>
               </circle>
               <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
               <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#080c1e"/>
@@ -1220,7 +1207,7 @@ footer {
               <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <animateMotion dur="4.8s" repeatCount="indefinite" calcMode="linear" rotate="auto"
-                path="M24,14 C55,20 88,32 118,48 C148,64 175,76 205,84 C232,90 260,92 295,90"/>
+                path="M22,8 C52,14 85,26 115,40 C145,56 172,66 202,72 C228,76 260,75 295,72"/>
             </g>
           </svg>
         </div>
@@ -1321,52 +1308,52 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D4 -->
         <div class="mini-map">
-          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 82" xmlns="http://www.w3.org/2000/svg">
             <!-- Pacífico domina – día de mar y cumpleaños -->
-            <rect width="320" height="120" fill="#020a18"/>
-            <rect x="0" y="0" width="320" height="80" fill="#040e22"/>
-            <rect x="0" y="0" width="320" height="30" fill="#050f20"/>
-            <!-- Ondas del Pacífico -->
-            <path d="M0,10 Q40,7 80,10 Q120,13 160,10 Q200,7 240,10 Q280,13 320,10" stroke="rgba(22,95,185,0.36)" stroke-width="1.2" fill="none"/>
-            <path d="M0,22 Q45,19 90,22 Q135,25 180,22 Q225,19 270,22 Q298,24 320,22" stroke="rgba(22,95,185,0.26)" stroke-width="1" fill="none"/>
-            <path d="M0,36 Q50,33 100,36 Q150,39 200,36 Q250,33 300,36 Q315,37 320,36" stroke="rgba(22,95,185,0.18)" stroke-width="0.9" fill="none"/>
-            <path d="M0,50 Q55,47 110,50 Q165,53 220,50 Q270,47 312,50" stroke="rgba(22,95,185,0.12)" stroke-width="0.8" fill="none"/>
-            <path d="M0,64 Q60,61 120,64 Q180,67 240,64 Q285,61 320,64" stroke="rgba(22,95,185,0.08)" stroke-width="0.7" fill="none"/>
-            <!-- Zona delfines – glow pulsante -->
-            <circle cx="115" cy="38" r="26" fill="rgba(15,80,165,0.16)">
-              <animate attributeName="r" values="22;32;22" dur="3.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.14;0.22;0.14" dur="3.5s" repeatCount="indefinite"/>
+            <rect width="320" height="82" fill="#060e22"/>
+            <!-- Océano profundo -->
+            <rect x="0" y="0" width="320" height="52" fill="#0a2040"/>
+            <!-- Capa superficial más clara -->
+            <rect x="0" y="0" width="320" height="22" fill="#0c2848"/>
+            <!-- Ondas -->
+            <path d="M0,8 Q40,5 80,8 Q120,11 160,8 Q200,5 240,8 Q280,11 320,8" stroke="rgba(35,120,210,0.45)" stroke-width="1.2" fill="none"/>
+            <path d="M0,20 Q45,17 90,20 Q135,23 180,20 Q225,17 270,20 Q298,22 320,20" stroke="rgba(35,120,210,0.32)" stroke-width="1" fill="none"/>
+            <path d="M0,34 Q50,31 100,34 Q150,37 200,34 Q252,31 300,34" stroke="rgba(35,120,210,0.20)" stroke-width="0.9" fill="none"/>
+            <path d="M0,46 Q55,43 110,46 Q165,49 220,46 Q270,43 312,46" stroke="rgba(35,120,210,0.12)" stroke-width="0.7" fill="none"/>
+            <!-- Glow delfines -->
+            <circle cx="112" cy="28" r="20" fill="rgba(18,95,190,0.22)">
+              <animate attributeName="r" values="16;26;16" dur="3.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.20;0.30;0.20" dur="3.5s" repeatCount="indefinite"/>
             </circle>
-            <!-- Zona tortugas -->
-            <circle cx="248" cy="44" r="18" fill="rgba(10,82,128,0.14)">
-              <animate attributeName="r" values="15;23;15" dur="4s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.12;0.20;0.12" dur="4s" repeatCount="indefinite"/>
+            <!-- Glow tortugas -->
+            <circle cx="245" cy="32" r="15" fill="rgba(12,88,145,0.20)">
+              <animate attributeName="r" values="12;20;12" dur="4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.18;0.28;0.18" dur="4s" repeatCount="indefinite"/>
             </circle>
-            <!-- Laguna Ventanilla -->
-            <ellipse cx="86" cy="90" rx="15" ry="6" fill="rgba(14,66,112,0.42)"/>
             <!-- Línea costera -->
-            <path d="M0,78 Q55,74 115,77 Q175,80 235,77 Q278,74 320,76" stroke="rgba(210,188,118,0.34)" stroke-width="2.2" fill="none"/>
-            <!-- Franja de tierra -->
-            <rect x="0" y="78" width="320" height="42" fill="#0c0e04"/>
-            <path d="M0,92 Q80,89 160,92 Q240,95 320,92" stroke="rgba(140,122,60,0.16)" stroke-width="0.6" fill="none"/>
+            <path d="M0,52 Q55,48 115,51 Q175,54 232,51 Q278,48 320,50" stroke="rgba(210,185,90,0.45)" stroke-width="2.2" fill="none"/>
+            <!-- Franja tierra -->
+            <rect x="0" y="50" width="320" height="32" fill="#0e2018"/>
+            <!-- Laguna Ventanilla -->
+            <ellipse cx="86" cy="66" rx="14" ry="5" fill="rgba(15,65,120,0.50)"/>
             <!-- Destellos cumple -->
-            <circle cx="24" cy="96" r="1.5" fill="rgba(245,200,66,0.65)"><animate attributeName="opacity" values="0.65;1;0.65" dur="1.9s" repeatCount="indefinite"/></circle>
-            <circle cx="160" cy="100" r="1.5" fill="rgba(245,200,66,0.65)"><animate attributeName="opacity" values="0.65;1;0.65" dur="2.3s" repeatCount="indefinite"/></circle>
-            <circle cx="298" cy="95" r="1.5" fill="rgba(245,200,66,0.65)"><animate attributeName="opacity" values="0.65;1;0.65" dur="1.6s" repeatCount="indefinite"/></circle>
+            <circle cx="22" cy="68" r="1.5" fill="rgba(245,200,66,0.80)"><animate attributeName="opacity" values="0.80;1;0.80" dur="1.9s" repeatCount="indefinite"/></circle>
+            <circle cx="158" cy="70" r="1.5" fill="rgba(245,200,66,0.80)"><animate attributeName="opacity" values="0.80;1;0.80" dur="2.3s" repeatCount="indefinite"/></circle>
+            <circle cx="295" cy="68" r="1.5" fill="rgba(245,200,66,0.80)"><animate attributeName="opacity" values="0.80;1;0.80" dur="1.6s" repeatCount="indefinite"/></circle>
             <!-- Ruta costera -->
-            <path class="mm-path" data-dur="4200" d="M32,88 C65,82 98,76 140,78 C172,80 200,76 232,78 C258,80 278,84 292,88" stroke="#f5c842" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.88"/>
-            <circle cx="32" cy="88" r="5" fill="#f5c842"/>
-            <circle cx="140" cy="78" r="4" fill="rgba(245,200,66,0.68)"/>
-            <circle cx="292" cy="88" r="4.5" fill="rgba(255,255,255,0.80)"/>
-            <text x="32" y="112" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="DM Mono,monospace">ZIPOLITE</text>
-            <text x="115" y="28" font-size="7" fill="rgba(255,255,255,0.26)" text-anchor="middle" font-family="DM Mono,monospace">DELFINES</text>
-            <text x="248" y="34" font-size="7" fill="rgba(255,255,255,0.24)" text-anchor="middle" font-family="DM Mono,monospace">TORTUGAS</text>
-            <text x="292" y="108" font-size="7.5" fill="rgba(255,255,255,0.34)" text-anchor="middle" font-family="DM Mono,monospace">P.COMETA</text>
+            <path class="mm-path" data-dur="4200" d="M22,60 C55,54 95,50 138,52 C170,54 198,50 228,52 C255,54 275,58 292,60" stroke="#f5c842" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="22" cy="60" r="5.5" fill="#f5c842"/>
+            <circle cx="138" cy="52" r="4.5" fill="rgba(245,200,66,0.80)"/>
+            <circle cx="292" cy="60" r="5.5" fill="rgba(255,255,255,0.90)"/>
+            <text x="22" y="78" font-size="9.5" fill="rgba(255,255,255,0.78)" text-anchor="middle" font-family="DM Mono,monospace">ZIPOLITE</text>
+            <text x="112" y="20" font-size="9" fill="rgba(255,255,255,0.58)" text-anchor="middle" font-family="DM Mono,monospace">DELFINES</text>
+            <text x="245" y="24" font-size="9" fill="rgba(255,255,255,0.52)" text-anchor="middle" font-family="DM Mono,monospace">TORTUGAS</text>
+            <text x="292" y="78" font-size="9.5" fill="rgba(255,255,255,0.75)" text-anchor="middle" font-family="DM Mono,monospace">P.COMETA</text>
             <!-- Carrito -->
             <g>
-              <circle r="9" fill="rgba(245,200,66,0.16)">
-                <animate attributeName="r" values="8;14;8" dur="2s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.14;0.30;0.14" dur="2s" repeatCount="indefinite"/>
+              <circle r="8" fill="rgba(245,200,66,0.18)">
+                <animate attributeName="r" values="7;13;7" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.16;0.30;0.16" dur="2s" repeatCount="indefinite"/>
               </circle>
               <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
               <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#080c1e"/>
@@ -1375,7 +1362,7 @@ footer {
               <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <animateMotion dur="4.2s" repeatCount="indefinite" calcMode="linear" rotate="auto"
-                path="M32,88 C65,82 98,76 140,78 C172,80 200,76 232,78 C258,80 278,84 292,88"/>
+                path="M22,60 C55,54 95,50 138,52 C170,54 198,50 228,52 C255,54 275,58 292,60"/>
             </g>
           </svg>
         </div>
@@ -1469,43 +1456,39 @@ footer {
 
     <!-- ████ SLIDE 5 · DÍA 5 · ZIPOLITE → OAXACA ████ -->
     <div class="story" id="s5">
-      <div class="story-bg"><img class="story-bg-img" src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1280" style="object-position:center 35%" loading="eager" alt=""></div>
+      <div class="story-bg"><img class="story-bg-img" src="https://images.pexels.com/photos/29072237/pexels-photo-29072237.jpeg?auto=compress&cs=tinysrgb&w=1280" style="object-position:center 50%" loading="eager" alt=""></div>
       <div class="story-panel">
         <!-- MINI-MAP D5 -->
         <div class="mini-map">
-          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 82" xmlns="http://www.w3.org/2000/svg">
             <!-- Costa → ascenso → Oaxaca -->
-            <rect width="320" height="120" fill="#04080e"/>
-            <!-- Océano izquierda arriba -->
-            <polygon points="0,0 0,120 52,120 65,100 72,80 74,60 68,40 56,20 38,10 14,5 0,5" fill="#040e20"/>
-            <path d="M0,18 Q18,15 36,18 Q54,21 68,18" stroke="rgba(22,95,178,0.40)" stroke-width="1" fill="none"/>
-            <path d="M0,30 Q20,27 40,30 Q60,33 70,30" stroke="rgba(22,95,178,0.28)" stroke-width="0.8" fill="none"/>
-            <path d="M0,44 Q22,41 44,44 Q65,47 72,44" stroke="rgba(22,95,178,0.18)" stroke-width="0.7" fill="none"/>
-            <!-- Costa / franja tierra izquierda -->
-            <path d="M0,96 Q25,90 52,93 Q70,96 80,92" stroke="rgba(210,188,118,0.32)" stroke-width="1.8" fill="none"/>
-            <polygon points="0,90 0,120 92,120 88,102 74,90 55,88 34,90" fill="#0c0e04"/>
-            <!-- Sierra ascendente (centro y derecha) -->
-            <polygon points="62,120 88,96 105,76 118,62 130,50 145,40 160,32 175,26 190,22 208,20 225,22 240,26 255,32 270,38 285,46 300,58 315,70 320,76 320,120" fill="#091508"/>
-            <polygon points="88,120 112,92 128,70 140,54 154,42 168,34 182,27 198,23 215,22 232,24 248,28 263,36 278,44 292,54 306,66 320,76 320,120" fill="#071005"/>
-            <!-- Contorno de nivel -->
-            <path d="M100,102 Q125,78 148,62 Q170,48 190,40 Q210,34 232,36" stroke="rgba(25,55,20,0.40)" stroke-width="0.8" fill="none"/>
-            <path d="M95,110 Q120,88 144,72 Q165,58 185,50 Q205,44 228,44" stroke="rgba(25,55,20,0.24)" stroke-width="0.6" fill="none"/>
+            <rect width="320" height="82" fill="#070d18"/>
+            <!-- Océano izquierda -->
+            <polygon points="0,0 0,82 50,82 65,62 72,44 70,24 58,12 36,6 14,4 0,5" fill="#0a2040"/>
+            <path d="M0,16 Q18,13 36,16 Q54,19 68,16" stroke="rgba(35,120,210,0.44)" stroke-width="1" fill="none"/>
+            <path d="M0,28 Q20,25 40,28 Q60,31 70,28" stroke="rgba(35,120,210,0.30)" stroke-width="0.8" fill="none"/>
+            <path d="M0,42 Q22,39 44,42 Q65,45 72,42" stroke="rgba(35,120,210,0.18)" stroke-width="0.7" fill="none"/>
+            <!-- Costa franja tierra izquierda -->
+            <path d="M0,68 Q26,62 52,65 Q70,68 82,64" stroke="rgba(210,185,90,0.38)" stroke-width="1.8" fill="none"/>
+            <polygon points="0,64 0,82 94,82 88,70 75,63 55,61 32,63" fill="#0e2018"/>
+            <!-- Sierra ascendente -->
+            <polygon points="62,82 88,64 105,50 118,38 130,28 145,20 160,14 175,10 192,8 210,8 228,10 244,16 260,24 278,34 295,46 312,58 320,64 320,82" fill="#12251a"/>
+            <polygon points="88,82 112,60 128,44 140,30 154,20 168,14 182,9 198,7 215,8 232,12 248,18 263,26 278,36 292,48 306,60 320,64 320,82" fill="#0c1e14"/>
+            <!-- Curvas de nivel -->
+            <path d="M100,70 Q125,52 148,38 Q170,26 190,20 Q210,16 232,18" stroke="rgba(38,90,50,0.46)" stroke-width="0.9" fill="none"/>
             <!-- Oaxaca valle derecha -->
-            <rect x="268" y="0" width="52" height="120" fill="#080e04"/>
-            <circle cx="295" cy="28" r="20" fill="rgba(50,72,200,0.08)"/>
-            <!-- Carretera fondo -->
-            <path d="M8,92 Q40,88 72,78 Q102,66 128,52 Q155,40 185,30 Q215,22 248,24 Q270,26 292,28" stroke="rgba(55,82,150,0.16)" stroke-width="1.2" fill="none" stroke-dasharray="8,5"/>
-            <!-- Ruta -->
-            <path class="mm-path" data-dur="4800" d="M25,90 C55,84 85,72 115,56 C145,42 172,30 202,22 C230,16 260,18 295,28" stroke="#f5c842" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.82"/>
-            <circle cx="25" cy="90" r="5" fill="#f5c842"/>
-            <circle cx="295" cy="28" r="5" fill="rgba(255,255,255,0.80)"/>
-            <text x="25" y="110" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="DM Mono,monospace">VENTANILLA</text>
-            <text x="295" y="14" font-size="8" fill="rgba(255,255,255,0.40)" text-anchor="middle" font-family="DM Mono,monospace">OAXACA</text>
+            <rect x="268" y="0" width="52" height="82" fill="#1c150a"/>
+            <!-- Ruta ascenso -->
+            <path class="mm-path" data-dur="4800" d="M22,70 C50,64 78,54 108,42 C135,30 162,22 192,16 C220,12 252,14 292,22" stroke="#f5c842" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="22" cy="70" r="5.5" fill="#f5c842"/>
+            <circle cx="292" cy="22" r="5.5" fill="rgba(255,255,255,0.90)"/>
+            <text x="22" y="80" font-size="9" fill="rgba(255,255,255,0.75)" text-anchor="middle" font-family="DM Mono,monospace">VENTANILLA</text>
+            <text x="290" y="12" font-size="10" fill="rgba(255,255,255,0.78)" text-anchor="middle" font-family="DM Mono,monospace">OAXACA</text>
             <!-- Carrito -->
             <g>
-              <circle r="9" fill="rgba(245,200,66,0.13)">
-                <animate attributeName="r" values="8;13;8" dur="2.2s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.11;0.25;0.11" dur="2.2s" repeatCount="indefinite"/>
+              <circle r="8" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="7;12;7" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.28;0.14" dur="2.2s" repeatCount="indefinite"/>
               </circle>
               <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
               <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#080c1e"/>
@@ -1514,7 +1497,7 @@ footer {
               <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <animateMotion dur="4.8s" repeatCount="indefinite" calcMode="linear" rotate="auto"
-                path="M25,90 C55,84 85,72 115,56 C145,42 172,30 202,22 C230,16 260,18 295,28"/>
+                path="M22,70 C50,64 78,54 108,42 C135,30 162,22 192,16 C220,12 252,14 292,22"/>
             </g>
           </svg>
         </div>
@@ -1608,57 +1591,50 @@ footer {
       <div class="story-panel">
         <!-- MINI-MAP D6 -->
         <div class="mini-map">
-          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 82" xmlns="http://www.w3.org/2000/svg">
             <!-- Oaxaca → Monte Albán → Sierra → Puebla → CDMX -->
-            <rect width="320" height="120" fill="#04080e"/>
-            <!-- Oaxaca valle izquierda -->
-            <rect x="0" y="0" width="62" height="120" fill="#080e04"/>
-            <circle cx="28" cy="78" r="20" fill="rgba(50,72,200,0.07)"/>
-            <!-- Monte Albán – colina pequeña -->
-            <polygon points="55,120 62,96 70,80 78,68 86,75 94,90 102,112 112,120" fill="#12100a"/>
-            <polygon points="62,120 68,100 74,84 80,72 86,78 92,94 100,114 112,120" fill="#0e0c08"/>
-            <!-- Sierra Madre cruce central -->
-            <polygon points="98,120 115,95 128,74 140,58 152,44 165,34 178,28 192,24 205,26 218,32 230,42 242,54 255,68 268,82 280,96 295,110 320,120" fill="#091508"/>
-            <polygon points="118,120 132,96 144,74 155,56 167,40 180,32 194,28 208,28 222,34 234,46 246,60 258,76 272,90 286,106 302,118 320,120" fill="#071005"/>
+            <rect width="320" height="82" fill="#070d18"/>
+            <!-- Oaxaca valle -->
+            <rect x="0" y="0" width="58" height="82" fill="#1c150a"/>
+            <!-- Monte Albán colina -->
+            <polygon points="52,82 62,62 70,46 78,40 86,46 94,62 104,82" fill="#24180c"/>
+            <polygon points="62,82 68,66 74,52 80,44 86,50 92,64 100,80 108,82" fill="#1e1409"/>
+            <!-- Sierra central -->
+            <polygon points="98,82 115,60 128,44 140,30 152,20 165,14 178,10 192,8 205,10 218,16 230,26 242,38 255,50 268,62 280,72 295,78 320,82" fill="#12251a"/>
+            <polygon points="118,82 132,60 144,44 155,28 167,18 180,12 194,8 208,8 222,14 234,26 246,40 258,54 272,66 286,74 302,80 320,82" fill="#0c1e14"/>
             <!-- Curvas de nivel -->
-            <path d="M120,102 Q142,76 162,58 Q182,42 200,36 Q220,32 240,38" stroke="rgba(25,55,20,0.40)" stroke-width="0.8" fill="none"/>
-            <path d="M115,110 Q138,85 158,68 Q178,52 196,46 Q215,42 234,46" stroke="rgba(25,55,20,0.24)" stroke-width="0.6" fill="none"/>
-            <!-- Puebla valle centro-der -->
-            <rect x="238" y="0" width="44" height="120" fill="#08100e"/>
-            <circle cx="252" cy="30" r="18" fill="rgba(72,52,165,0.10)"/>
-            <!-- Puebla mini-grid -->
-            <line x1="244" y1="0" x2="244" y2="60" stroke="rgba(60,78,128,0.22)" stroke-width="0.6"/>
-            <line x1="258" y1="0" x2="258" y2="60" stroke="rgba(60,78,128,0.18)" stroke-width="0.5"/>
-            <line x1="240" y1="18" x2="282" y2="18" stroke="rgba(60,78,128,0.18)" stroke-width="0.5"/>
-            <line x1="240" y1="32" x2="282" y2="32" stroke="rgba(60,78,128,0.14)" stroke-width="0.4"/>
-            <!-- CDMX zona urbana derecha -->
-            <rect x="278" y="0" width="42" height="120" fill="#080f1e"/>
-            <line x1="285" y1="0" x2="285" y2="120" stroke="rgba(45,68,130,0.28)" stroke-width="0.6"/>
-            <line x1="302" y1="0" x2="302" y2="120" stroke="rgba(45,68,130,0.20)" stroke-width="0.5"/>
-            <line x1="280" y1="28" x2="320" y2="28" stroke="rgba(45,68,130,0.20)" stroke-width="0.5"/>
-            <line x1="280" y1="50" x2="320" y2="50" stroke="rgba(45,68,130,0.16)" stroke-width="0.4"/>
-            <line x1="280" y1="72" x2="320" y2="72" stroke="rgba(45,68,130,0.12)" stroke-width="0.4"/>
-            <line x1="280" y1="94" x2="320" y2="94" stroke="rgba(45,68,130,0.10)" stroke-width="0.4"/>
-            <!-- CDMX glow – más intenso por ser llegada -->
-            <circle cx="295" cy="62" r="28" fill="rgba(50,72,200,0.12)"/>
-            <circle cx="295" cy="62" r="14" fill="rgba(50,72,200,0.08)"/>
-            <!-- Autopista fondo -->
-            <path d="M5,78 Q35,76 58,70 Q74,66 82,72 Q96,72 108,66 Q130,56 158,42 Q186,30 218,26 Q242,26 252,32 Q268,42 278,52 Q286,58 295,62" stroke="rgba(55,82,150,0.16)" stroke-width="1.2" fill="none" stroke-dasharray="8,5"/>
+            <path d="M120,70 Q142,50 162,36 Q182,22 200,16 Q220,12 240,18" stroke="rgba(38,90,50,0.48)" stroke-width="0.9" fill="none"/>
+            <!-- Puebla valle -->
+            <rect x="238" y="0" width="44" height="82" fill="#141a10"/>
+            <line x1="248" y1="0" x2="248" y2="50" stroke="rgba(65,95,65,0.30)" stroke-width="0.6"/>
+            <line x1="262" y1="0" x2="262" y2="50" stroke="rgba(65,95,65,0.22)" stroke-width="0.5"/>
+            <line x1="240" y1="16" x2="282" y2="16" stroke="rgba(65,95,65,0.24)" stroke-width="0.5"/>
+            <line x1="240" y1="30" x2="282" y2="30" stroke="rgba(65,95,65,0.16)" stroke-width="0.4"/>
+            <circle cx="252" cy="24" r="14" fill="rgba(65,95,65,0.12)"/>
+            <!-- CDMX zona urbana -->
+            <rect x="278" y="0" width="42" height="82" fill="#0e1c35"/>
+            <line x1="286" y1="0" x2="286" y2="82" stroke="rgba(70,110,200,0.32)" stroke-width="0.6"/>
+            <line x1="302" y1="0" x2="302" y2="82" stroke="rgba(70,110,200,0.22)" stroke-width="0.5"/>
+            <line x1="280" y1="20" x2="320" y2="20" stroke="rgba(70,110,200,0.24)" stroke-width="0.5"/>
+            <line x1="280" y1="40" x2="320" y2="40" stroke="rgba(70,110,200,0.16)" stroke-width="0.4"/>
+            <line x1="280" y1="60" x2="320" y2="60" stroke="rgba(70,110,200,0.12)" stroke-width="0.4"/>
+            <!-- CDMX glow llegada -->
+            <circle cx="295" cy="54" r="22" fill="rgba(50,72,200,0.15)"/>
             <!-- Ruta -->
-            <path class="mm-path" data-dur="5200" d="M28,78 C45,76 58,70 74,66 C82,70 90,76 104,72 C122,62 148,46 175,34 C200,24 222,22 242,28 C260,36 274,50 295,62" stroke="#f5c842" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.82"/>
-            <circle cx="28" cy="78" r="5" fill="#f5c842"/>
-            <circle cx="80" cy="72" r="4" fill="rgba(255,255,255,0.52)"/>
-            <circle cx="252" cy="30" r="4" fill="rgba(255,255,255,0.52)"/>
-            <circle cx="295" cy="62" r="5" fill="rgba(255,255,255,0.88)"/>
-            <text x="28" y="98" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-family="DM Mono,monospace">OAXACA</text>
-            <text x="80" y="60" font-size="6.5" fill="rgba(255,255,255,0.30)" text-anchor="middle" font-family="DM Mono,monospace">M.ALBÁN</text>
-            <text x="252" y="18" font-size="7.5" fill="rgba(255,255,255,0.34)" text-anchor="middle" font-family="DM Mono,monospace">PUEBLA</text>
-            <text x="295" y="82" font-size="8.5" fill="rgba(245,200,66,0.68)" text-anchor="middle" font-family="DM Mono,monospace">CDMX</text>
+            <path class="mm-path" data-dur="5200" d="M22,60 C38,58 52,52 66,46 C74,50 82,56 96,52 C114,42 138,28 165,20 C188,14 212,14 238,22 C256,30 272,42 295,54" stroke="#f5c842" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="22" cy="60" r="5.5" fill="#f5c842"/>
+            <circle cx="78" cy="52" r="4" fill="rgba(255,255,255,0.65)"/>
+            <circle cx="248" cy="24" r="4" fill="rgba(255,255,255,0.65)"/>
+            <circle cx="295" cy="54" r="5.5" fill="rgba(255,255,255,0.92)"/>
+            <text x="22" y="76" font-size="9.5" fill="rgba(255,255,255,0.75)" text-anchor="middle" font-family="DM Mono,monospace">OAXACA</text>
+            <text x="78" y="40" font-size="7.5" fill="rgba(255,255,255,0.58)" text-anchor="middle" font-family="DM Mono,monospace">M.ALBÁN</text>
+            <text x="252" y="14" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle" font-family="DM Mono,monospace">PUEBLA</text>
+            <text x="295" y="76" font-size="10" fill="rgba(245,200,66,0.88)" text-anchor="middle" font-family="DM Mono,monospace">CDMX</text>
             <!-- Carrito -->
             <g>
-              <circle r="9" fill="rgba(245,200,66,0.13)">
-                <animate attributeName="r" values="8;13;8" dur="2.2s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.11;0.25;0.11" dur="2.2s" repeatCount="indefinite"/>
+              <circle r="8" fill="rgba(245,200,66,0.16)">
+                <animate attributeName="r" values="7;12;7" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.14;0.28;0.14" dur="2.2s" repeatCount="indefinite"/>
               </circle>
               <rect x="-7" y="-4" width="14" height="8" rx="2.5" fill="#f5c842"/>
               <rect x="-1.5" y="-3.2" width="7.5" height="6.4" rx="1.5" fill="#080c1e"/>
@@ -1667,7 +1643,7 @@ footer {
               <ellipse cx="-6.5" cy="-2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <ellipse cx="-6.5" cy="2.5" rx="1" ry="0.9" fill="rgba(255,55,55,0.92)"/>
               <animateMotion dur="5.2s" repeatCount="indefinite" calcMode="linear" rotate="auto"
-                path="M28,78 C45,76 58,70 74,66 C82,70 90,76 104,72 C122,62 148,46 175,34 C200,24 222,22 242,28 C260,36 274,50 295,62"/>
+                path="M22,60 C38,58 52,52 66,46 C74,50 82,56 96,52 C114,42 138,28 165,20 C188,14 212,14 238,22 C256,30 272,42 295,54"/>
             </g>
           </svg>
         </div>
@@ -1960,7 +1936,7 @@ footer {
       p.getAnimations().forEach(function (a) { a.cancel(); });
       var dur = parseInt(p.dataset.dur || '4000', 10);
       p.animate(
-        [{ strokeDashoffset: 1000 }, { strokeDashoffset: 0 }],
+        [{ strokeDashoffset: 900 }, { strokeDashoffset: 0 }],
         { duration: dur, fill: 'none', easing: 'linear', iterations: Infinity }
       );
     });
@@ -1969,7 +1945,7 @@ footer {
   function resetPaths(storyEl) {
     storyEl.querySelectorAll('.mm-path').forEach(function (p) {
       p.getAnimations().forEach(function (a) { a.cancel(); });
-      p.style.strokeDashoffset = '1000';
+      p.style.strokeDashoffset = '900';
     });
   }
 
